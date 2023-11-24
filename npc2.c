@@ -24,20 +24,20 @@
 //         sfSprite_setPosition(all->npc.self.sp, set);
 // }
 
-void play_dialogue(npc_t *npc, all_t *all)
-{
-    sfVector2f pos = {100, 190};
-    sfSprite_setScale(npc->dialogue.sp, (sfVector2f){0.5, 0.5});
-    sfSprite_setPosition(npc->dialogue.sp, pos);
-    if (my_strcmp(npc->self.name, P_CHEST) == 0) {
-        if (npc->self.frame == 4)
-            npc->can_dialogue = -1;
-        sfSprite_setTextureRect(npc->dialogue.sp, (sfIntRect){0, 0, 409, 97});
-    }
-    if (npc->can_dialogue == 1) {
-        sfRenderWindow_drawSprite(all->win, npc->dialogue.sp, NULL);
-    }
-}
+// void play_dialogue(npc_t *npc, all_t *all)
+// {
+//     sfVector2f pos = {100, 190};
+//     sfSprite_setScale(npc->dialogue.sp, (sfVector2f){0.5, 0.5});
+//     sfSprite_setPosition(npc->dialogue.sp, pos);
+//     if (my_strcmp(npc->self.name, P_CHEST) == 0) {
+//         if (npc->self.frame == 4)
+//             npc->can_dialogue = -1;
+//         sfSprite_setTextureRect(npc->dialogue.sp, (sfIntRect){0, 0, 409, 97});
+//     }
+//     if (npc->can_dialogue == 1) {
+//         sfRenderWindow_drawSprite(all->win, npc->dialogue.sp, NULL);
+//     }
+// }
 
 // void npc_collisions(all_t *all)
 // {

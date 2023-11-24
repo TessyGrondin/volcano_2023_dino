@@ -14,31 +14,31 @@ int is_move(int anim, int self)
     return anim;
 }
 
-void hit_right(enti_t *player)
+void hit_right(player_t *player)
 {
     sfSprite_setScale(player->sp.sp, (sfVector2f){1, 1});
     sfSprite_setOrigin(player->sp.sp, (sfVector2f){0, 0});
     if (player->last_move == RIGHT) {
         sfSprite_setScale(player->sp.sp, (sfVector2f){-1, 1});
         sfSprite_setOrigin(player->sp.sp, (sfVector2f){40, 0});
-        player->anim = ATT_S;
+        player->sp.anim = ATT_S;
     }
 }
 
-void find_last_move(enti_t *player)
+void find_last_move(player_t *player)
 {
     if (player->last_move == LEFT) {
-        player->anim = ATT_S;
+        player->sp.anim = ATT_S;
         return;
     }
     if (player->last_move == UP || player->last_move == UPRIGHT ||
     player->last_move == UPLEFT) {
-        player->anim = ATT_F;
+        player->sp.anim = ATT_F;
         return;
     }
     if (player->last_move == DOWN || player->last_move == DOWNRIGHT ||
     player->last_move == DOWNLEFT) {
-        player->anim = ATT_B;
+        player->sp.anim = ATT_B;
         return;
     }
     hit_right(player);

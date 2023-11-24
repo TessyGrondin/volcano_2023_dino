@@ -6,7 +6,7 @@
 ##
 
 SRC = 	getlvl.c\
-		norme_load_try.c\
+		main.c\
 		map_load.c\
 		destroy.c\
 		anim.c\
@@ -14,15 +14,10 @@ SRC = 	getlvl.c\
 		player.c\
 		read_layer.c\
 		sword.c\
-		life_barre.c\
-		fire.c\
-		fire2.c\
 		collision.c\
 		move2.c\
-		sword2.c\
+		bite_attack.c\
 		npc.c\
-		npc2.c\
-		wheel.c\
 		change_map.c\
 		map.c\
 		collisions_left.c\
@@ -30,13 +25,12 @@ SRC = 	getlvl.c\
 		reload.c\
 		state_rings.c\
 		endgame.c\
-		hp_modif.c\
 		music.c\
 		menu.c\
 		button.c\
 		loop.c
 
-NAME = my_rpg
+NAME = to_a_new_era
 
 OBJ = $(SRC:.c=.o)
 

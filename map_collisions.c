@@ -29,39 +29,29 @@ sfBool create_collisions(collision_t *array)
     return sfTrue;
 }
 
-void fill_collision(map_t *map, int x, int y, int layer)
+void fill_collision(map_t *map, int x, int y)
 {
     int index = y * map->width + x;
     sfVector2f set = {index % map->width * 16, index / map->width * 16};
-    if (map->tiles[layer][index] == -1)
+    if (map->tiles[COLLISION][index] == -1)
         return;
-    if (layer == COLLISION) {
-        map->collisions[index].state = sfTrue;
-        sfRectangleShape_setPosition(map->collisions[index].rect, set);
-        sfRectangleShape_setFillColor(map->collisions[index].rect, sfBlue);
-    } else {
-        map->road[index].state = sfTrue;
-        sfRectangleShape_setPosition(map->road[index].rect, set);
-        sfRectangleShape_setFillColor(map->road[index].rect, sfBlue);
-    }
+    map->collisions[index].state = sfTrue;
+    sfRectangleShape_setPosition(map->collisions[index].rect, set);
+    sfRectangleShape_setFillColor(map->collisions[index].rect, sfBlue);
 }
 
 void fill_all_collisions(map_t *map)
 {
-    for (unsigned int i = 0; i < map->width; i++) {
-        for (unsigned int j = 0; j < map->height; j++) {
-            fill_collision(map, i, j, COLLISION);
-            fill_collision(map, i, j, ROAD);
-        }
-    }
+    for (unsigned int i = 0; i < map->width; i++)
+        for (unsigned int j = 0; j < map->height; j++)
+            fill_collision(map, i, j);
 }
 
 void monster_collisions(all_t *all)
 {
     if (!all->charged)
         return;
-    for (int i = 0; all->ent[i].sp.sp; i++) {
-        collisions(&all->ent[i], all);
-        road_collisions(&all->ent[i], all);
+    for (int i = 0; all->enemies[i].sp; i++) {
+        collisions(&all->enemies[i], all);
     }
 }

@@ -7,42 +7,43 @@
 
 #include "include/testmap.h"
 
-void check_hp(enti_t *ent, enti_t *plr)
-{
-    float divide = (5 / ent->def) < 1 ? 1 : (5 / ent->def);
-    int hit = 0;
-    if (ent->use_fire == 0 && plr->use_fire == 1) {
-        hit = (int)(plr->ball.value * plr->attack / divide);
-        hit = (plr->rings % 2) ? hit * 1.5 : hit;
-        ent->hp -= hit;
-        ent->use_fire = 1;
-        return;
-    }
-    if (ent->use_wheel == 0 && plr->use_wheel == 1) {
-        hit = (int)(plr->wheel.value * plr->attack / divide);
-        hit = (plr->rings % 2) ? hit * 1.5 : hit;
-        ent->hp -= hit;
-        ent->use_wheel = 1;
-    }
-}
+// void check_hp(enti_t *ent, enti_t *plr)
+// {
+//     float divide = (5 / ent->def) < 1 ? 1 : (5 / ent->def);
+//     int hit = 0;
+//     if (ent->use_fire == 0 && plr->use_fire == 1) {
+//         hit = (int)(plr->ball.value * plr->attack / divide);
+//         hit = (plr->rings % 2) ? hit * 1.5 : hit;
+//         ent->hp -= hit;
+//         ent->use_fire = 1;
+//         return;
+//     }
+//     if (ent->use_wheel == 0 && plr->use_wheel == 1) {
+//         hit = (int)(plr->wheel.value * plr->attack / divide);
+//         hit = (plr->rings % 2) ? hit * 1.5 : hit;
+//         ent->hp -= hit;
+//         ent->use_wheel = 1;
+//     }
+// }
 
 int fire_hit(all_t *all)
 {
     if (all->player.use_fire == 0)
         return 0;
-    for (int i = 0; all->ent[i].sp.sp; i++) {
-        if (is_colliding(&all->player.ball, &all->ent[i].sp)) {
-            check_hp(&all->ent[i], &all->player);
-            all->ent[i].anim = 1;
+    for (int i = 0; all->enemies[i].sp; i++) {
+        if (is_colliding(&all->player.ball, &all->enemies[i])) {
+            check_hp(&all->enemies[i], &all->player);
+            all->enemies[i].anim = 1;
             return 1;
         }
-        if (is_colliding(&all->player.ball, &all->ent[i].sp) == 0)
-            all->ent[i].use_fire = 0;
+        if (is_colliding(&all->player.ball, &all->enemies[i]) == 0) {
+        }
+            // all->enemies[i].use_fire = 0;
     }
     return 0;
 }
 
-int out_of_border(enti_t *player)
+int out_of_border(player_t *player)
 {
     sfVector2f pos = sfSprite_getPosition(player->ball.sp);
     pos.x += 16;
@@ -58,7 +59,7 @@ int out_of_border(enti_t *player)
     return 0;
 }
 
-void fire_move(enti_t *player)
+void fire_move(player_t *player)
 {
     sfVector2f movement = {0, 0};
     sfVector2f reset = sfSprite_getPosition(player->sp.sp);

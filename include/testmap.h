@@ -42,37 +42,48 @@
         unsigned int width;
         unsigned int height;
         collision_t *collisions;
-        collision_t *road;
+        // collision_t *road;
     } map_t;
 
     typedef struct {
-        char *name;
+        // char *name;
         sfSprite *sp;
         sfTexture *tex;
-        int value;
+        // int value;
         int frame;
         float lat;
+        int anim;
     } sprite_t;
 
     typedef struct {
         sprite_t sp;
-        sprite_t ball;
-        int alive;
-        int invincible;
-        float invicibility_time;
-        int use_fire;
-        int anim;
-        int last_move;
+    } ennemy_t;
+
+    typedef struct {
+        sprite_t sp;
+        sfBool alive;
+    } target_t;
+
+    typedef struct {
+        sprite_t sp;
+        // sprite_t ball;
+        // int invincible;
+        // float invicibility_time;
+        // sfBool use_fire;
+        sfBool bite;
         int last;
-    } enti_t;
+        int last_move;
+        int orientation;
+        int offering;
+    } player_t;
 
     enum layer {
         GROUND,
-        ROAD,
         DECORS,
+        BIOM,
         ENTRANCES,
         COLLISION,
-        SPONE
+        SPAWN
     };
 
     enum animation {
@@ -96,7 +107,7 @@
         sfMusic *loose_mus;
         sfMusic *win_mus;
         sfSound *hit;
-        sfSound *levelup;
+        // sfSound *levelup;
         sfSound *button_sound;
     } sound_t;
 
@@ -114,24 +125,32 @@
         sfRenderWindow *win;
         sfEvent event;
         map_t map;
-        enti_t player;
+        player_t player;
         sfView *view;
         sfClock *clock;
-        enti_t *ent;
-        enti_t *npc;
-        sfRectangleShape **life;
+        sprite_t *enemies;
+        target_t *target;
+        // sfRectangleShape **life;
         sprite_t end;
         sound_t sounds;
         menu_t menu;
-        sfText *stats;
+        // sfText *stats;
         int charged;
         float move;
         int force_anim_change;
-        int orientation;
         int current_map;
         int is_end;
         int e_menu;
     } all_t;
+
+    player_t create_player(sfClock *clock);
+    sfBool collide_bite(sfFloatRect rect, sprite_t *other);
+    void use_bite(player_t *player, all_t *all);
+    void bite_left(player_t *player, target_t *target);
+    void bite_right(player_t *player, target_t *target);
+    void bite_up(player_t *player, target_t *target);
+    void bite_down(player_t *player, target_t *target);
+    void find_last_move(player_t *player);
 
     int *getlvl(const char *pathname);
     all_t init_all(void);
@@ -140,64 +159,63 @@
     map_t initmap(void);
     void get_all_layers(all_t *all);
     void destroy_all(all_t *all);
-    enti_t entit_create(sfClock *clock, char *pathname, char *name);
+    // enti_t entit_create(sfClock *clock, char *pathname, char *name);
     void draw_sprite(all_t *all);
     void auto_animation(all_t *all);
-    void move(enti_t *ent);
+    void move(sprite_t *sprite);
     void catch_input(all_t *all);
     void anim_player(all_t *all);
     void spone_monster(all_t *all);
     void map_borders(all_t *all);
-    sprite_t sp_create(char *name, char *path, sfClock *cl);
-    void use_sword(enti_t *player, all_t *all);
+    sprite_t sp_create(char *path, sfClock *cl);
     int is_colliding(sprite_t *self, sprite_t *other);
-    void is_alive(all_t *all);
-    void draw_life_barre(all_t *all);
+    // void is_alive(all_t *all);
+    // void draw_life_barre(all_t *all);
     sfRectangleShape **create_life_barre(void);
     void get_hit(all_t *all);
     int fire_hit(all_t *all);
-    void fire_move(enti_t *player);
+    // void fire_move(enti_t *player);
     void anim_fire(all_t *all, int orientation);
     void catch_fire_one(all_t *all);
-    void collisions(enti_t *ent, all_t *all);
-    void find_last_move(enti_t *player);
+    void collisions(sprite_t *ent, all_t *all);
+    // void find_last_move(enti_t *player);
     int is_move(int anim, int self);
-    void sword_left(enti_t *player, enti_t *monster);
-    void sword_right(enti_t *player, enti_t *monster);
-    void sword_up(enti_t *player, enti_t *monster);
-    void sword_down(enti_t *player, enti_t *monster);
-    void npc_range(all_t *all, int index);
-    npc_t npc_create(char *name, all_t *all);
-    void interaction(npc_t *npc, all_t *all);
-    void anim_npc(enti_t  *npc, all_t *all);
-    void anim_dragon(npc_t *dragon, all_t *all);
-    void anim_chest(npc_t *chest, all_t *all);
-    void play_dialogue(npc_t *npc, all_t *all);
-    void anim_wheel(all_t *all);
-    void draw_wheel(all_t *all);
-    void hit_wheel(all_t *all);
-    void check_hp(enti_t *ent, enti_t *plr);
+    // void sword_left(enti_t *player, enti_t *monster);
+    // void sword_right(enti_t *player, enti_t *monster);
+    // void sword_up(enti_t *player, enti_t *monster);
+    // void sword_down(enti_t *player, enti_t *monster);
+    // void npc_range(all_t *all, int index);
+    // npc_t npc_create(char *name, all_t *all);
+    // void interaction(npc_t *npc, all_t *all);
+    void anim_npc(target_t  *target, all_t *all);
+    // void anim_dragon(npc_t *dragon, all_t *all);
+    // void anim_chest(npc_t *chest, all_t *all);
+    // void play_dialogue(npc_t *npc, all_t *all);
+    // void anim_wheel(all_t *all);
+    // void draw_wheel(all_t *all);
+    // void hit_wheel(all_t *all);
+    // void check_hp(enti_t *ent, enti_t *plr);
     void empty_level(all_t *all);
     void read_entrances(all_t *all);
     void change_map(all_t *all, int new_map);
     sfBool create_collisions(collision_t *array);
     void fill_all_collisions(map_t *map);
-    void npc_collisions(all_t *all);
-    void collision_left(enti_t *ent, all_t *all);
-    void collision_right(enti_t *ent, all_t *all);
-    void collision_up(enti_t *ent, all_t *all);
-    void collision_down(enti_t *ent, all_t *all);
-    sfVector2f inverse_move(enti_t *ent);
-    void road_collisions(enti_t *ent, all_t *all);
+    // void npc_collisions(all_t *all);
+    // void collision_left(enti_t *ent, all_t *all);
+    // void collision_right(enti_t *ent, all_t *all);
+    // void collision_up(enti_t *ent, all_t *all);
+    // void collision_down(enti_t *ent, all_t *all);
+    // sfVector2f inverse_move(enti_t *ent);
+    // void road_collisions(enti_t *ent, all_t *all);
     void monster_collisions(all_t *all);
     void reload(all_t *all);
-    void redirection_animation(npc_t *npc, all_t *all);
-    void init_state(enti_t *res);
-    void set_chest(all_t *all);
-    void set_last_npc(all_t *all);
-    void add_ring(all_t *all);
-    void give_hp(enti_t *player);
-    void is_hp_ring(enti_t *player);
+    // void redirection_animation(npc_t *npc, all_t *all);
+    // void init_state(enti_t *res);
+    // void set_chest(all_t *all);
+    // void set_last_npc(all_t *all);
+    // void add_ring(all_t *all);
+    // void give_hp(enti_t *player);
+    // void is_hp_ring(enti_t *player);
     sfBool is_def(int ring);
     void loose(all_t *all);
     void action_player(all_t *all);

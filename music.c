@@ -15,7 +15,6 @@ sound_t get_all_sounds(void)
     res.loose_mus = sfMusic_createFromFile(P_LOOSE);
     res.win_mus = sfMusic_createFromFile(P_WIN);
     res.hit = create_sound(P_HIT);
-    res.levelup = create_sound(P_LEVELUP);
     res.button_sound = create_sound(P_BUTTON_SOUND);
     return res;
 }

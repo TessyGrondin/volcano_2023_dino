@@ -40,38 +40,38 @@ char *concat_all(char *level, char *def, char *att)
     return res;
 }
 
-void display_stats(all_t *all)
-{
-    if (all->is_end || !all->e_menu)
-        return;
-    char *level = get_str_from_nbr(all->player.level);
-    char *def = get_str_from_nbr(all->player.def);
-    char *att = get_str_from_nbr(all->player.attack);
-    char *total = concat_all(level, def, att);
-    sfVector2f pos = {370, 240};
-    sfText_setString(all->stats, total);
-    sfText_setPosition(all->stats, pos);
-    sfText_setCharacterSize(all->stats, 20);
-    sfRenderWindow_drawText(all->win, all->stats, NULL);
-}
+// void display_stats(all_t *all)
+// {
+//     if (all->is_end || !all->e_menu)
+//         return;
+//     char *level = get_str_from_nbr(all->player.level);
+//     char *def = get_str_from_nbr(all->player.def);
+//     char *att = get_str_from_nbr(all->player.attack);
+//     char *total = concat_all(level, def, att);
+//     sfVector2f pos = {370, 240};
+//     sfText_setString(all->stats, total);
+//     sfText_setPosition(all->stats, pos);
+//     sfText_setCharacterSize(all->stats, 20);
+//     sfRenderWindow_drawText(all->win, all->stats, NULL);
+// }
 
 void game_loop(all_t *all)
 {
     if (!all->e_menu)
         return;
+    // my_printf("start of loop\n");
     sfMusic_stop(all->sounds.menu_mus);
     main_music_manager(&all->sounds, all->sounds.game_mus);
     read_entrances(all);
+    // my_printf("read entrances safely\n");
     get_all_layers(all);
     sfRenderWindow_clear(all->win, sfBlack);
     catch_input(all);
-    catch_fire_one(all);
-    // is_alive(all);
     action_player(all);
     auto_animation(all);
     map_draw(all);
-    display_stats(all);
     sfRenderWindow_display(all->win);
+    // my_printf("end of loop\n\n");
 }
 
 sfSound *create_sound(char *path)

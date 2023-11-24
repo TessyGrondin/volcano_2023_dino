@@ -58,12 +58,11 @@ void map_draw(all_t *all)
     states.transform = sfTransform_Identity;
     if (all->charged == 1 && all->is_end == 0) {
         states.texture = all->map.tileset;
-        sfRenderWindow_drawVertexArray(all->win, all->map.vert[0], &states);
-        sfRenderWindow_drawVertexArray(all->win, all->map.vert[ROAD], &states);
+        sfRenderWindow_drawVertexArray(all->win, all->map.vert[GROUND], &states);
+        // sfRenderWindow_drawVertexArray(all->win, all->map.vert[ROAD], &states);
         draw_sprite(all);
-        sfRenderWindow_drawVertexArray(all->win, all->map.vert[2], &states);
+        sfRenderWindow_drawVertexArray(all->win, all->map.vert[DECORS], &states);
         // if (all->npc.can_dialogue == 1)
         //     sfRenderWindow_drawSprite(all->win, all->npc.dialogue.sp, NULL);
-        draw_life_barre(all);
     }
 }

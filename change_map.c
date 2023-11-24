@@ -7,7 +7,7 @@
 
 #include "include/testmap.h"
 
-void set_player_position(enti_t *player, sfVector2f last_pos)
+void set_player_position(player_t *player, sfVector2f last_pos)
 {
     sfVector2f new_pos = {last_pos.x, last_pos.y};
     int width = 16 * 30;
@@ -48,6 +48,7 @@ void read_entrances(all_t *all)
     int index = 0;
     int index2 = 0;
     if (all->charged == 1) {
+        // my_printf("charged true\n");
         if (all->is_end != 1) {
             sfMusic_stop(all->sounds.loose_mus);
             sfMusic_stop(all->sounds.win_mus);

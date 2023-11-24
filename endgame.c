@@ -30,15 +30,13 @@ sfBool display_loose(all_t *all)
 
 void loose(all_t *all)
 {
-    if (all->player.hp <= 0) {
-        all->is_end = 1;
-        sfMusic_stop(all->sounds.game_mus);
-        main_music_manager(&all->sounds, all->sounds.loose_mus);
-        if (!display_loose(all)) {
-            init_state(&all->player);
-            sfSprite_setPosition(all->player.sp.sp, (sfVector2f){240, 128});
-            change_map(all, 4);
-        }
+    all->is_end = 1;
+    sfMusic_stop(all->sounds.game_mus);
+    main_music_manager(&all->sounds, all->sounds.loose_mus);
+    if (!display_loose(all)) {
+        // init_state(&all->player);
+        sfSprite_setPosition(all->player.sp.sp, (sfVector2f){240, 128});
+        change_map(all, 4);
     }
 }
 
@@ -65,7 +63,7 @@ void win(all_t *all)
         sfMusic_stop(all->sounds.game_mus);
         main_music_manager(&all->sounds, all->sounds.win_mus);
         if (!display_win(all)) {
-            init_state(&all->player);
+            // init_state(&all->player);
             sfSprite_setPosition(all->player.sp.sp, (sfVector2f){240, 128});
             change_map(all, 4);
             all->e_menu = 0;

@@ -10,7 +10,7 @@
 button_t get_button(sfClock *clock)
 {
     button_t res;
-    res.look = sp_create("button", P_NEW_GAME, clock);
+    res.look = sp_create(P_NEW_GAME, clock);
     res.state = 0;
     sfSprite_setTextureRect(res.look.sp, (sfIntRect){128, 0, 64, 24});
     return res;
@@ -19,7 +19,7 @@ button_t get_button(sfClock *clock)
 menu_t get_menu(sfClock *clock)
 {
     menu_t res;
-    res.bg = sp_create("bg", P_MM_BG, clock);
+    res.bg = sp_create(P_MM_BG, clock);
     res.start = get_button(clock);
     sfSprite_setTextureRect(res.bg.sp, (sfIntRect){0, 0, 1280, 720});
     sfSprite_setScale(res.bg.sp, (sfVector2f){0.4, 0.4});

@@ -7,74 +7,49 @@
 
 #include "include/testmap.h"
 
-void play_animation(enti_t *entit, all_t *all)
+void play_animation(sprite_t *entit, all_t *all)
 {
     sfTime time = sfClock_getElapsedTime(all->clock);
     float timing = sfTime_asSeconds(time);
-    sfIntRect rect = sfSprite_getTextureRect(entit->sp.sp);
+    sfIntRect rect = sfSprite_getTextureRect(entit->sp);
     anim_player(all);
-    if (timing - entit->sp.lat >= 0.15 || all->force_anim_change) {
-        if (entit->sp.frame == 3) {
+    if (timing - entit->lat >= 0.15 || all->force_anim_change) {
+        if (entit->frame == 3) {
             rect.left = entit->anim * 32 * 4;
-            entit->sp.frame = 0;
+            entit->frame = 0;
         } else {
             rect.left += 32;
-            entit->sp.frame++;
+            entit->frame++;
         }
-        sfSprite_setTextureRect(entit->sp.sp, rect);
-        entit->sp.lat = timing;
+        sfSprite_setTextureRect(entit->sp, rect);
+        entit->lat = timing;
     }
-}
-
-enti_t entit_create(sfClock *clock, char *pathname, char *name)
-{
-    sfTime time = sfClock_getElapsedTime(clock);
-    enti_t res;
-    res.sp = sp_create(name, pathname, clock);
-    init_state(&res);
-    res.invicibility_time = sfTime_asSeconds(time);
-    if (my_strcmp(name, "player") == 0) {
-        res.sword = sp_create("sword", P_SWORD, clock);
-        res.ball = sp_create("fire", P_FIRE, clock);
-        res.wheel = sp_create("wheel", P_WHEEL, clock);
-    }
-    return res;
 }
 
 void draw_sprite(all_t *all)
 {
-    for (int i = 0; all->ent[i].sp.sp != NULL; i++) {
-        if (all->ent[i].alive == 1)
-            sfRenderWindow_drawSprite(all->win, all->ent[i].sp.sp, NULL);
-    }
+    // (void)all;
+    for (int i = 0; all->enemies[i].sp != NULL; i++)
+        sfRenderWindow_drawSprite(all->win, all->enemies[i].sp, NULL);
     sfRenderWindow_drawSprite(all->win, all->player.sp.sp, NULL);
-    // set_last_npc(all);
-    for (int i = 0; all->npc[i].sp.sp != NULL; i++) {
-        if (all->npc[i].alive == 1)
-            sfRenderWindow_drawSprite(all->win, all->npc[i].sp.sp, NULL);
-    }
-    draw_wheel(all);
-    if (all->player.use_fire)
-        sfRenderWindow_drawSprite(all->win, all->player.ball.sp, NULL);
+    for (int i = 0; all->target[i].sp.sp != NULL; i++)
+        if (all->target[i].alive == 1)
+            sfRenderWindow_drawSprite(all->win, all->target[i].sp.sp, NULL);
 }
 
 void anim_everyone(all_t *all)
 {
-    for (int i = 0; all->ent[i].sp.sp != NULL; i++)
-        play_animation(&all->ent[i], all);
-    for (int i = 0; all->ent[i].sp.sp != NULL; i++)
-        move(&all->ent[i]);
+    for (int i = 0; all->enemies[i].sp != NULL; i++)
+        play_animation(&all->enemies[i], all);
+    for (int i = 0; all->enemies[i].sp != NULL; i++)
+        move(&all->enemies[i]);
 
-    for (int i = 0; all->npc[i].sp.sp != NULL; i++)
-        anim_npc(&all->npc[i], all);
-    for (int i = 0; all->npc[i].sp.sp != NULL; i++)
-        move(&all->npc[i]);
+    for (int i = 0; all->target[i].sp.sp != NULL; i++)
+        anim_npc(&all->target[i], all);
+    for (int i = 0; all->target[i].sp.sp != NULL; i++)
+        move(&all->target[i].sp);
 
     monster_collisions(all);
-    anim_fire(all, all->orientation);
-    anim_wheel(all);
-    fire_hit(all);
-    hit_wheel(all);
     map_borders(all);
     all->force_anim_change = 0;
 }
@@ -85,17 +60,17 @@ void auto_animation(all_t *all)
     float timing = sfTime_asSeconds(time);
     if (!all->charged || all->is_end == 1) return;
     if (timing - all->move >= 2) {
-        for (int i = 0; all->ent[i].sp.sp != NULL; i++) {
-            all->ent[i].anim = rand() % 20;
-            all->ent[i].anim = ((all->ent[i].anim) > 9) ? 0 : all->ent[i].anim;
-            all->ent[i].anim = ((all->ent[i].anim) == 1) ? 0 : all->ent[i].anim;
-            all->ent[i].sp.frame = 3;
+        for (int i = 0; all->enemies[i].sp != NULL; i++) {
+            all->enemies[i].anim = rand() % 20;
+            all->enemies[i].anim = ((all->enemies[i].anim) > 9) ? 0 : all->enemies[i].anim;
+            all->enemies[i].anim = ((all->enemies[i].anim) == 1) ? 0 : all->enemies[i].anim;
+            all->enemies[i].frame = 3;
         }
-        for (int i = 0; all->npc[i].sp.sp != NULL; i++) {
-            all->npc[i].anim = rand() % 20;
-            all->npc[i].anim = ((all->npc[i].anim) > 9) ? 0 : all->npc[i].anim;
-            all->npc[i].anim = ((all->npc[i].anim) == 1) ? 0 : all->npc[i].anim;
-            all->npc[i].sp.frame = 3;
+        for (int i = 0; all->target[i].sp.sp != NULL; i++) {
+            all->target[i].sp.anim = rand() % 20;
+            all->target[i].sp.anim = ((all->target[i].sp.anim) > 9) ? 0 : all->target[i].sp.anim;
+            all->target[i].sp.anim = ((all->target[i].sp.anim) == 1) ? 0 : all->target[i].sp.anim;
+            all->target[i].sp.frame = 3;
         }
         all->move = timing;
         all->force_anim_change = 1;

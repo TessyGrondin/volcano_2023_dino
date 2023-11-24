@@ -11,12 +11,12 @@ void catch_fire_two(all_t *all)
 {
     if (sfKeyboard_isKeyPressed(sfKeyS)) {
             all->player.use_fire = 1;
-            all->orientation = 3;
+            all->player.orientation = 3;
             return;
         }
     if (sfKeyboard_isKeyPressed(sfKeyD)) {
         all->player.use_fire = 1;
-        all->orientation = 4;
+        all->player.orientation = 4;
         return;
     }
 }
@@ -25,12 +25,12 @@ void catch_fire_one(all_t *all)
 {
     if (sfKeyboard_isKeyPressed(sfKeyZ)) {
         all->player.use_fire = 1;
-        all->orientation = 1;
+        all->player.orientation = 1;
         return;
     }
     if (sfKeyboard_isKeyPressed(sfKeyQ)) {
         all->player.use_fire = 1;
-        all->orientation = 2;
+        all->player.orientation = 2;
         return;
     }
     catch_fire_two(all);
@@ -64,5 +64,5 @@ void anim_fire(all_t *all, int orientation)
         sfSprite_setTextureRect(all->player.ball.sp, rect);
         all->player.ball.lat = timing;
     }
-    fire_move(&all->player);
+    // fire_move(&all->player);
 }

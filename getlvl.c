@@ -12,16 +12,15 @@ all_t init_all(void)
     all_t res;
     make_base_material(&res);
     res.clock = sfClock_create();
-    res.ent = malloc(sizeof(enti_t) * 31);
-    res.npc = malloc(sizeof(enti_t) * 31);
-    res.ent[0].sp.sp = NULL;
+    res.enemies = malloc(sizeof(sprite_t) * 31);
+    res.target = malloc(sizeof(target_t) * 2);
+    res.enemies[0].sp = NULL;
+    res.target[0].sp.sp = NULL;
     res.move = sfTime_asSeconds(sfClock_getElapsedTime(res.clock));
     res.force_anim_change = 0;
     res.charged = 0;
-    res.player = entit_create(res.clock, P_PLAYER, "player");
-    res.life = create_life_barre();
-    res.orientation = 0;
-    res.end = sp_create("end", P_END, res.clock);
+    res.player = create_player(res.clock);
+    res.end = sp_create(P_END, res.clock);
     res.current_map = 4;
     res.is_end = 0;
     res.menu = get_menu(res.clock);
@@ -37,9 +36,7 @@ map_t initmap(void)
     res.width = 30;
     res.vert = malloc(sizeof(sfVertexArray *) * 6);
     res.collisions = malloc(sizeof(collision_t) * 601);
-    res.road = malloc(sizeof(collision_t) * 601);
     create_collisions(res.collisions);
-    create_collisions(res.road);
     return res;
 }
 
@@ -88,7 +85,9 @@ void get_all_layers(all_t *all)
         all->map.tiles[all->map.nb_layer] = NULL;
         if (!map_load(&all->map, P_TILESET, (sfVector2u){16, 16}))
             return;
+        // my_printf("loaded\n");
         spone_monster(all);
+        // my_printf("complete\n");
         all->charged = 1;
     }
 }

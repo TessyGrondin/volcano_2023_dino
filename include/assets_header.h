@@ -14,11 +14,11 @@
 
     #define P_NEW_GAME "assets/buttons/new_game.png"
 
-    #define P_NPC1 "assets/characters/npc1.png"
+    #define P_TARGET1 "assets/characters/npc1.png"
 
-    #define P_NPC2 "assets/characters/npc2.png"
+    #define P_TARGET2 "assets/characters/npc2.png"
 
-    #define P_NPC3 "assets/characters/npc3.png"
+    #define P_TARGET3 "assets/characters/npc3.png"
 
     #define P_DRAGON "assets/characters/dragon.png"
 
