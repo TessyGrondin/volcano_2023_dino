@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "testmap.h": "c",
+        "my.h": "c",
+        "layers_header.h": "c"
+    }
+}
