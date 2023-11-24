@@ -71,8 +71,8 @@ void catch_input(all_t *all)
     all->player.last_move = is_move(all->player.anim, all->player.last_move);
     sfSprite_setScale(all->player.sp.sp, (sfVector2f){1, 1});
     sfSprite_setOrigin(all->player.sp.sp, (sfVector2f){0, 0});
-    if (all->player.use_wheel || all->npc.can_dialogue == 1)
-        return;
+    // if (all->player.use_wheel || all->npc.can_dialogue == 1)
+    //     return;
     if (sfKeyboard_isKeyPressed(sfKeyLeft) &&
     sfKeyboard_isKeyPressed(sfKeyUp)) {
         all->player.anim = UPLEFT;

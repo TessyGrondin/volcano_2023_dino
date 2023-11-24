@@ -56,25 +56,14 @@
 
     typedef struct {
         sprite_t sp;
-        sprite_t sword;
         sprite_t ball;
-        sprite_t wheel;
-        int level;
         int alive;
         int invincible;
         float invicibility_time;
-        int use_sword;
         int use_fire;
-        int use_wheel;
-        int hp;
-        int attack;
-        int def;
-        int exp;
         int anim;
         int last_move;
         int last;
-        int rings;
-        int max_hp;
     } enti_t;
 
     enum layer {
@@ -122,12 +111,6 @@
     } menu_t;
 
     typedef struct {
-        sprite_t self;
-        sprite_t dialogue;
-        int can_dialogue;
-    } npc_t;
-
-    typedef struct {
         sfRenderWindow *win;
         sfEvent event;
         map_t map;
@@ -135,7 +118,7 @@
         sfView *view;
         sfClock *clock;
         enti_t *ent;
-        npc_t npc;
+        enti_t *npc;
         sfRectangleShape **life;
         sprite_t end;
         sound_t sounds;
@@ -186,7 +169,7 @@
     void npc_range(all_t *all, int index);
     npc_t npc_create(char *name, all_t *all);
     void interaction(npc_t *npc, all_t *all);
-    void anim_npc(npc_t *npc, all_t *all);
+    void anim_npc(enti_t  *npc, all_t *all);
     void anim_dragon(npc_t *dragon, all_t *all);
     void anim_chest(npc_t *chest, all_t *all);
     void play_dialogue(npc_t *npc, all_t *all);

@@ -59,11 +59,11 @@ sfBool chest_open(all_t *all)
     return sfFalse;
 }
 
-void set_chest(all_t *all)
-{
-    if (chest_open(all)) {
-        all->npc.can_dialogue = -1;
-        all->npc.self.frame = 4;
-        sfSprite_setTextureRect(all->npc.self.sp, (sfIntRect){256, 0, 64, 64});
-    }
-}
+// void set_chest(all_t *all)
+// {
+//     if (chest_open(all)) {
+//         all->npc.can_dialogue = -1;
+//         all->npc.self.frame = 4;
+//         sfSprite_setTextureRect(all->npc.self.sp, (sfIntRect){256, 0, 64, 64});
+//     }
+// }

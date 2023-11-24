@@ -23,34 +23,34 @@ npc_t npc_create(char *name, all_t *all)
     return res;
 }
 
-void interaction(npc_t *npc, all_t *all)
-{
-    npc_collisions(all);
-    if (is_colliding(&all->player.sp, &npc->self) &&
-    sfKeyboard_isKeyPressed(sfKeyF)) {
-        if (npc->can_dialogue == 1) {
-            npc->can_dialogue = 0;
-        } else {
-            npc->can_dialogue = 1;
-        }
-    }
-}
+// void interaction(npc_t *npc, all_t *all)
+// {
+//     // npc_collisions(all);
+//     if (is_colliding(&all->player.sp, &npc->self) &&
+//     sfKeyboard_isKeyPressed(sfKeyF)) {
+//         if (npc->can_dialogue == 1) {
+//             npc->can_dialogue = 0;
+//         } else {
+//             npc->can_dialogue = 1;
+//         }
+//     }
+// }
 
-void anim_npc(npc_t *npc, all_t *all)
+void anim_npc(enti_t *npc, all_t *all)
 {
     sfTime time = sfClock_getElapsedTime(all->clock);
     float timing = sfTime_asSeconds(time);
-    sfIntRect rect = sfSprite_getTextureRect(npc->self.sp);
-    if (timing - npc->self.lat >= 0.15) {
-        if (npc->self.frame == 3) {
-            npc->self.frame = 0;
+    sfIntRect rect = sfSprite_getTextureRect(npc->sp.sp);
+    if (timing - npc->sp.lat >= 0.15) {
+        if (npc->sp.frame == 3) {
+            npc->sp.frame = 0;
             rect.left = 0;
         } else {
             rect.left += 32;
-            npc->self.frame++;
+            npc->sp.frame++;
         }
-        sfSprite_setTextureRect(npc->self.sp, rect);
-        npc->self.lat = timing;
+        sfSprite_setTextureRect(npc->sp.sp, rect);
+        npc->sp.lat = timing;
     }
 }
 

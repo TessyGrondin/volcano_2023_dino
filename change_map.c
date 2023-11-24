@@ -35,8 +35,8 @@ void change_map(all_t *all, int new_map)
 void redirect(all_t *all, int index, sfVector2f pos)
 {
     if (all->map.tiles[ENTRANCES][index] != -1) {
-            set_player_position(&all->player, pos);
-            change_map(all, all->map.tiles[ENTRANCES][index]);
+        set_player_position(&all->player, pos);
+        change_map(all, all->map.tiles[ENTRANCES][index]);
     }
 }
 

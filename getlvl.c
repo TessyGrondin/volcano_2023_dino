@@ -13,6 +13,7 @@ all_t init_all(void)
     make_base_material(&res);
     res.clock = sfClock_create();
     res.ent = malloc(sizeof(enti_t) * 31);
+    res.npc = malloc(sizeof(enti_t) * 31);
     res.ent[0].sp.sp = NULL;
     res.move = sfTime_asSeconds(sfClock_getElapsedTime(res.clock));
     res.force_anim_change = 0;

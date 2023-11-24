@@ -66,7 +66,7 @@ void game_loop(all_t *all)
     sfRenderWindow_clear(all->win, sfBlack);
     catch_input(all);
     catch_fire_one(all);
-    is_alive(all);
+    // is_alive(all);
     action_player(all);
     auto_animation(all);
     map_draw(all);

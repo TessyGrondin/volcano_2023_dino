@@ -7,16 +7,16 @@
 
 #include "include/testmap.h"
 
-void destroy_npc(all_t *all)
-{
-    sfTexture_destroy(all->npc.self.tex);
-    sfSprite_destroy(all->npc.self.sp);
-    sfTexture_destroy(all->npc.dialogue.tex);
-    sfSprite_destroy(all->npc.dialogue.sp);
-    can_free(all->npc.self.name);
-    can_free(all->npc.dialogue.name);
-    all->npc.self.sp = NULL;
-}
+// void destroy_npc(all_t *all)
+// {
+//     sfTexture_destroy(all->npc.self.tex);
+//     sfSprite_destroy(all->npc.self.sp);
+//     sfTexture_destroy(all->npc.dialogue.tex);
+//     sfSprite_destroy(all->npc.dialogue.sp);
+//     can_free(all->npc.self.name);
+//     can_free(all->npc.dialogue.name);
+//     all->npc.self.sp = NULL;
+// }
 
 void destroy_menu_and_sounds(all_t *all)
 {
@@ -63,8 +63,8 @@ void destroy_all(all_t *all)
         sfRectangleShape_destroy(all->life[i]);
     free(all->life);
     destroy_map(&all->map);
-    if (all->npc.self.sp)
-        destroy_npc(all);
+    // if (all->npc.self.sp)
+    //     destroy_npc(all);
     sfSprite_destroy(all->end.sp);
     sfTexture_destroy(all->end.tex);
     can_free(all->end.name);
@@ -87,6 +87,12 @@ void empty_level(all_t *all)
         can_free(all->ent[i].sp.name);
         all->ent[i].sp.sp = NULL;
     }
-    if (all->npc.self.sp)
-        destroy_npc(all);
+    for (int i = 0; all->npc[i].sp.sp != NULL; i++) {
+        sfTexture_destroy(all->npc[i].sp.tex);
+        sfSprite_destroy(all->npc[i].sp.sp);
+        can_free(all->npc[i].sp.name);
+        all->npc[i].sp.sp = NULL;
+    }
+    // if (all->npc.self.sp)
+    //     destroy_npc(all);
 }

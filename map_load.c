@@ -62,8 +62,8 @@ void map_draw(all_t *all)
         sfRenderWindow_drawVertexArray(all->win, all->map.vert[ROAD], &states);
         draw_sprite(all);
         sfRenderWindow_drawVertexArray(all->win, all->map.vert[2], &states);
-        if (all->npc.can_dialogue == 1)
-            sfRenderWindow_drawSprite(all->win, all->npc.dialogue.sp, NULL);
+        // if (all->npc.can_dialogue == 1)
+        //     sfRenderWindow_drawSprite(all->win, all->npc.dialogue.sp, NULL);
         draw_life_barre(all);
     }
 }

@@ -48,8 +48,11 @@ void draw_sprite(all_t *all)
             sfRenderWindow_drawSprite(all->win, all->ent[i].sp.sp, NULL);
     }
     sfRenderWindow_drawSprite(all->win, all->player.sp.sp, NULL);
-    set_last_npc(all);
-    sfRenderWindow_drawSprite(all->win, all->npc.self.sp, NULL);
+    // set_last_npc(all);
+    for (int i = 0; all->npc[i].sp.sp != NULL; i++) {
+        if (all->npc[i].alive == 1)
+            sfRenderWindow_drawSprite(all->win, all->npc[i].sp.sp, NULL);
+    }
     draw_wheel(all);
     if (all->player.use_fire)
         sfRenderWindow_drawSprite(all->win, all->player.ball.sp, NULL);
@@ -61,11 +64,12 @@ void anim_everyone(all_t *all)
         play_animation(&all->ent[i], all);
     for (int i = 0; all->ent[i].sp.sp != NULL; i++)
         move(&all->ent[i]);
-    if (all->npc.self.sp != NULL) {
-        redirection_animation(&all->npc, all);
-        interaction(&all->npc, all);
-        play_dialogue(&all->npc, all);
-    }
+
+    for (int i = 0; all->npc[i].sp.sp != NULL; i++)
+        anim_npc(&all->npc[i], all);
+    for (int i = 0; all->npc[i].sp.sp != NULL; i++)
+        move(&all->npc[i]);
+
     monster_collisions(all);
     anim_fire(all, all->orientation);
     anim_wheel(all);
@@ -86,6 +90,12 @@ void auto_animation(all_t *all)
             all->ent[i].anim = ((all->ent[i].anim) > 9) ? 0 : all->ent[i].anim;
             all->ent[i].anim = ((all->ent[i].anim) == 1) ? 0 : all->ent[i].anim;
             all->ent[i].sp.frame = 3;
+        }
+        for (int i = 0; all->npc[i].sp.sp != NULL; i++) {
+            all->npc[i].anim = rand() % 20;
+            all->npc[i].anim = ((all->npc[i].anim) > 9) ? 0 : all->npc[i].anim;
+            all->npc[i].anim = ((all->npc[i].anim) == 1) ? 0 : all->npc[i].anim;
+            all->npc[i].sp.frame = 3;
         }
         all->move = timing;
         all->force_anim_change = 1;
