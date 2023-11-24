@@ -7,6 +7,25 @@
 
 #include "include/testmap.h"
 
+void play_animation(enti_t *entit, all_t *all)
+{
+    sfTime time = sfClock_getElapsedTime(all->clock);
+    float timing = sfTime_asSeconds(time);
+    sfIntRect rect = sfSprite_getTextureRect(entit->sp.sp);
+    anim_player(all);
+    if (timing - entit->sp.lat >= 0.15 || all->force_anim_change) {
+        if (entit->sp.frame == 3) {
+            rect.left = entit->anim * 32 * 4;
+            entit->sp.frame = 0;
+        } else {
+            rect.left += 32;
+            entit->sp.frame++;
+        }
+        sfSprite_setTextureRect(entit->sp.sp, rect);
+        entit->sp.lat = timing;
+    }
+}
+
 enti_t entit_create(sfClock *clock, char *pathname, char *name)
 {
     sfTime time = sfClock_getElapsedTime(clock);
@@ -54,25 +73,6 @@ void anim_everyone(all_t *all)
     hit_wheel(all);
     map_borders(all);
     all->force_anim_change = 0;
-}
-
-void play_animation(enti_t *entit, all_t *all)
-{
-    sfTime time = sfClock_getElapsedTime(all->clock);
-    float timing = sfTime_asSeconds(time);
-    sfIntRect rect = sfSprite_getTextureRect(entit->sp.sp);
-    anim_player(all);
-    if (timing - entit->sp.lat >= 0.15 || all->force_anim_change) {
-        if (entit->sp.frame == 3) {
-            rect.left = entit->anim * 32 * 4;
-            entit->sp.frame = 0;
-        } else {
-            rect.left += 32;
-            entit->sp.frame++;
-        }
-        sfSprite_setTextureRect(entit->sp.sp, rect);
-        entit->sp.lat = timing;
-    }
 }
 
 void auto_animation(all_t *all)

@@ -7,25 +7,6 @@
 
 #include "include/testmap.h"
 
-void game_loop(all_t *all)
-{
-    if (!all->e_menu)
-        return;
-    sfMusic_stop(all->sounds.menu_mus);
-    main_music_manager(&all->sounds, all->sounds.game_mus);
-    read_entrances(all);
-    get_all_layers(all);
-    sfRenderWindow_clear(all->win, sfBlack);
-    catch_input(all);
-    catch_fire_one(all);
-    is_alive(all);
-    action_player(all);
-    auto_animation(all);
-    map_draw(all);
-    display_stats(all);
-    sfRenderWindow_display(all->win);
-}
-
 char *get_str_from_nbr(int nb)
 {
     int E = 10;
@@ -72,6 +53,25 @@ void display_stats(all_t *all)
     sfText_setPosition(all->stats, pos);
     sfText_setCharacterSize(all->stats, 20);
     sfRenderWindow_drawText(all->win, all->stats, NULL);
+}
+
+void game_loop(all_t *all)
+{
+    if (!all->e_menu)
+        return;
+    sfMusic_stop(all->sounds.menu_mus);
+    main_music_manager(&all->sounds, all->sounds.game_mus);
+    read_entrances(all);
+    get_all_layers(all);
+    sfRenderWindow_clear(all->win, sfBlack);
+    catch_input(all);
+    catch_fire_one(all);
+    is_alive(all);
+    action_player(all);
+    auto_animation(all);
+    map_draw(all);
+    display_stats(all);
+    sfRenderWindow_display(all->win);
 }
 
 sfSound *create_sound(char *path)

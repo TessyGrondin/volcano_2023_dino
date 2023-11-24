@@ -21,6 +21,7 @@ int my_putnbr(int nb)
 {
     int p = 1;
     int i = 0;
+
     if (nb < 0) {
         nb *= -1;
         my_putchar('-');

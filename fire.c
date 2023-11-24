@@ -7,6 +7,20 @@
 
 #include "include/testmap.h"
 
+void catch_fire_two(all_t *all)
+{
+    if (sfKeyboard_isKeyPressed(sfKeyS)) {
+            all->player.use_fire = 1;
+            all->orientation = 3;
+            return;
+        }
+    if (sfKeyboard_isKeyPressed(sfKeyD)) {
+        all->player.use_fire = 1;
+        all->orientation = 4;
+        return;
+    }
+}
+
 void catch_fire_one(all_t *all)
 {
     if (sfKeyboard_isKeyPressed(sfKeyZ)) {
@@ -20,20 +34,6 @@ void catch_fire_one(all_t *all)
         return;
     }
     catch_fire_two(all);
-}
-
-void catch_fire_two(all_t *all)
-{
-    if (sfKeyboard_isKeyPressed(sfKeyS)) {
-            all->player.use_fire = 1;
-            all->orientation = 3;
-            return;
-        }
-    if (sfKeyboard_isKeyPressed(sfKeyD)) {
-        all->player.use_fire = 1;
-        all->orientation = 4;
-        return;
-    }
 }
 
 void set_orientation(sprite_t *fire, int orientation)

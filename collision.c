@@ -7,6 +7,23 @@
 
 #include "include/testmap.h"
 
+sfVector2f inverse_diagonal(enti_t *ent)
+{
+    sfVector2f upleft = {-1, -1};
+    sfVector2f upright = {1, -1};
+    sfVector2f downleft = {-1, 1};
+    sfVector2f downright = {1, 1};
+    if (ent->anim == UPLEFT)
+        return downright;
+    if (ent->anim == UPRIGHT)
+        return downleft;
+    if (ent->anim == DOWNLEFT)
+        return upright;
+    if (ent->anim == DOWNRIGHT)
+        return upleft;
+    return (sfVector2f){0, 0};
+}
+
 void expulse(all_t *all, enti_t *ent, sfFloatRect *self, sfFloatRect *square)
 {
     sfVector2f vec = inverse_move(ent);
@@ -52,23 +69,6 @@ sfVector2f inverse_move(enti_t *ent)
     if (ent->anim == DOWN)
         return up;
     return inverse_diagonal(ent);
-}
-
-sfVector2f inverse_diagonal(enti_t *ent)
-{
-    sfVector2f upleft = {-1, -1};
-    sfVector2f upright = {1, -1};
-    sfVector2f downleft = {-1, 1};
-    sfVector2f downright = {1, 1};
-    if (ent->anim == UPLEFT)
-        return downright;
-    if (ent->anim == UPRIGHT)
-        return downleft;
-    if (ent->anim == DOWNLEFT)
-        return upright;
-    if (ent->anim == DOWNRIGHT)
-        return upleft;
-    return (sfVector2f){0, 0};
 }
 
 void road_collisions(enti_t *ent, all_t *all)

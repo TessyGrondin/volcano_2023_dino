@@ -14,6 +14,17 @@ int is_move(int anim, int self)
     return anim;
 }
 
+void hit_right(enti_t *player)
+{
+    sfSprite_setScale(player->sp.sp, (sfVector2f){1, 1});
+    sfSprite_setOrigin(player->sp.sp, (sfVector2f){0, 0});
+    if (player->last_move == RIGHT) {
+        sfSprite_setScale(player->sp.sp, (sfVector2f){-1, 1});
+        sfSprite_setOrigin(player->sp.sp, (sfVector2f){40, 0});
+        player->anim = ATT_S;
+    }
+}
+
 void find_last_move(enti_t *player)
 {
     if (player->last_move == LEFT) {
@@ -31,15 +42,4 @@ void find_last_move(enti_t *player)
         return;
     }
     hit_right(player);
-}
-
-void hit_right(enti_t *player)
-{
-    sfSprite_setScale(player->sp.sp, (sfVector2f){1, 1});
-    sfSprite_setOrigin(player->sp.sp, (sfVector2f){0, 0});
-    if (player->last_move == RIGHT) {
-        sfSprite_setScale(player->sp.sp, (sfVector2f){-1, 1});
-        sfSprite_setOrigin(player->sp.sp, (sfVector2f){40, 0});
-        player->anim = ATT_S;
-    }
 }

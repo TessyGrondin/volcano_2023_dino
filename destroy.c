@@ -35,6 +35,23 @@ void destroy_menu_and_sounds(all_t *all)
     sfSound_destroy(all->sounds.levelup);
 }
 
+void destroy_map(map_t *map)
+{
+    for (int i = 0; i != map->nb_layer; i++)
+        sfVertexArray_destroy(map->vert[i]);
+    free(map->vert);
+    for (int i = 0; map->tiles[i]; i++)
+        free(map->tiles[i]);
+    free(map->tiles);
+    for (int i = 0; i < 600; i++) {
+        sfRectangleShape_destroy(map->collisions[i].rect);
+        sfRectangleShape_destroy(map->road[i].rect);
+    }
+    free(map->collisions);
+    free(map->road);
+    sfTexture_destroy(map->tileset);
+}
+
 void destroy_all(all_t *all)
 {
     destroy_menu_and_sounds(all);
@@ -51,23 +68,6 @@ void destroy_all(all_t *all)
     sfSprite_destroy(all->end.sp);
     sfTexture_destroy(all->end.tex);
     can_free(all->end.name);
-}
-
-void destroy_map(map_t *map)
-{
-    for (int i = 0; i != map->nb_layer; i++)
-        sfVertexArray_destroy(map->vert[i]);
-    free(map->vert);
-    for (int i = 0; map->tiles[i]; i++)
-        free(map->tiles[i]);
-    free(map->tiles);
-    for (int i = 0; i < 600; i++) {
-        sfRectangleShape_destroy(map->collisions[i].rect);
-        sfRectangleShape_destroy(map->road[i].rect);
-    }
-    free(map->collisions);
-    free(map->road);
-    sfTexture_destroy(map->tileset);
 }
 
 void empty_level(all_t *all)
