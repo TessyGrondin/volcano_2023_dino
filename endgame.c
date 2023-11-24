@@ -34,7 +34,7 @@ void loose(all_t *all)
     sfMusic_stop(all->sounds.game_mus);
     main_music_manager(&all->sounds, all->sounds.loose_mus);
     if (!display_loose(all)) {
-        // init_state(&all->player);
+        all->player.offering = 0;
         sfSprite_setPosition(all->player.sp.sp, (sfVector2f){240, 128});
         change_map(all, 4);
     }

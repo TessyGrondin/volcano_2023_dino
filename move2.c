@@ -31,13 +31,11 @@ void find_last_move(player_t *player)
         player->sp.anim = ATT_S;
         return;
     }
-    if (player->last_move == UP || player->last_move == UPRIGHT ||
-    player->last_move == UPLEFT) {
+    if (player->last_move == UP) {
         player->sp.anim = ATT_F;
         return;
     }
-    if (player->last_move == DOWN || player->last_move == DOWNRIGHT ||
-    player->last_move == DOWNLEFT) {
+    if (player->last_move == DOWN) {
         player->sp.anim = ATT_B;
         return;
     }

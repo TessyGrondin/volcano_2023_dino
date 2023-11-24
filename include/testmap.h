@@ -93,10 +93,6 @@
         RIGHT,
         DOWN,
         UP,
-        DOWNLEFT,
-        DOWNRIGHT,
-        UPLEFT,
-        UPRIGHT,
         ATT_B,
         ATT_F
     };
@@ -107,7 +103,6 @@
         sfMusic *loose_mus;
         sfMusic *win_mus;
         sfSound *hit;
-        // sfSound *levelup;
         sfSound *button_sound;
     } sound_t;
 
