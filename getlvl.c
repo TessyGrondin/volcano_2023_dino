@@ -29,7 +29,7 @@ void create_target_arr(target_t *arr, sfClock *cl)
 
 all_t init_all(void)
 {
-    all_t res;
+    all_t res = {0};
     make_base_material(&res);
     res.clock = sfClock_create();
     res.enemies = malloc(sizeof(sprite_t) * 31);
@@ -37,15 +37,11 @@ all_t init_all(void)
     create_target_arr(res.target, res.clock);
     res.enemies[0].sp = NULL;
     res.move = sfTime_asSeconds(sfClock_getElapsedTime(res.clock));
-    res.force_anim_change = 0;
-    res.charged = 0;
     res.player = create_player(res.clock);
     res.end = sp_create(P_END, res.clock);
     res.altar = create_altar(P_TARGET3, res.clock);
     res.current_map = 4;
-    res.is_end = 0;
     res.menu = get_menu(res.clock);
-    res.e_menu = 0;
     res.sounds = get_all_sounds();
     return res;
 }

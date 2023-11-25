@@ -140,6 +140,7 @@
         int current_map;
         int is_end;
         int e_menu;
+        int placed_target;
     } all_t;
 
     player_t create_player(sfClock *clock);

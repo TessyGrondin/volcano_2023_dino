@@ -47,6 +47,8 @@ void reload(all_t *all)
     all->map.tiles[all->map.nb_layer] = NULL;
     if (!map_load(&all->map, P_TILESET, (sfVector2u){16, 16}))
         return;
+    for (int i = 0; all->target[i].sp.sp; i++)
+        all->target[i].alive = sfTrue;
     spone_monster(all);
     all->charged = 1;
 }

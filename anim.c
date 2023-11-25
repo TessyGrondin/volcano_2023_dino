@@ -45,8 +45,10 @@ void anim_everyone(all_t *all)
 
     for (int i = 0; all->target[i].sp.sp != NULL; i++)
         play_animation(&all->target[i].sp, all);
-    for (int i = 0; all->target[i].sp.sp != NULL; i++)
+    for (int i = 0; all->target[i].sp.sp != NULL; i++) {
         move(&all->target[i].sp);
+        collisions(&all->target[i].sp, all);
+    }
 
     monster_collisions(all);
     map_borders(all);

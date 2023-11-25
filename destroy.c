@@ -74,4 +74,5 @@ void empty_level(all_t *all)
         sfSprite_destroy(all->enemies[i].sp);
         all->enemies[i].sp = NULL;
     }
+    all->placed_target = 0;
 }

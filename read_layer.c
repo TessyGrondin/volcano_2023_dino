@@ -14,8 +14,8 @@ void place_target(int last, sfVector2f set, all_t *all)
     for (int i = 0; all->target[i].sp.sp; i++) {
         if (all->target[i].alive && all->current_map == all->target[i].map && ref == last) {
             sfSprite_setPosition(all->target[i].sp.sp, set);
+        } else if (all->target[i].alive && all->current_map == all->target[i].map)
             ref++;
-        }
         if (ref > last)
             break;
     }
@@ -24,7 +24,6 @@ void place_target(int last, sfVector2f set, all_t *all)
 void create_monster(all_t *all, sfVector2i pos)
 {
     int i = 0;
-    int j = 0;
     int color = 0;
     int index = pos.y * all->map.width + pos.x;
     sfVector2f set = {index % all->map.width * 16, index / all->map.width * 16};
@@ -42,10 +41,8 @@ void create_monster(all_t *all, sfVector2i pos)
         return;
     }
     if (all->map.tiles[SPAWN][index] == 1) {
-        place_target(j, set, all);
-        j++;
-        // for (; all->target[j].sp.sp != NULL; j++);
-        // sfSprite_setPosition(all->target[j].sp.sp, set);
+        place_target(all->placed_target, set, all);
+        all->placed_target++;
         return;
     }
 }
