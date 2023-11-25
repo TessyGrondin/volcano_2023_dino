@@ -10,6 +10,8 @@
 
     #define P_AUTEL "assets/game/map_tilset.png"
 
+    #define P_TBOX "assets/game/text.png"
+
     #define P_END "assets/game/end.png"
 
     #define P_MM_BG "assets/game/background.png"

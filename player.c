@@ -40,12 +40,23 @@ sprite_t sp_create(char *path, sfClock *cl)
     return res;
 }
 
-text_box_t create_text_box()
+text_box_t create_text_box(sfVector2f text_pos, sfVector2f box_pos)
 {
     text_box_t res = {0};
     res.text = sfText_create();
     sfText_setFont(res.text, sfFont_createFromFile(P_FONT));
-    sfText_setString(res.text, "hello");
+    sfText_setString(res.text, "");
+    sfIntRect r = {0, 0, 871, 201};
+    res.sp.sp = sfSprite_create();
+
+    res.sp.tex = sfTexture_createFromFile(P_TBOX, NULL);
+    sfSprite_setTexture(res.sp.sp, res.sp.tex, sfFalse);
+    sfSprite_setTextureRect(res.sp.sp, r);
+    sfSprite_setPosition(res.sp.sp, box_pos);
+    sfText_setPosition(res.text, text_pos);
+    sfSprite_setScale(res.sp.sp, (sfVector2f){0.2, 0.2});
+    sfText_setScale(res.text, (sfVector2f){0.5, 0.5});
+
     return res;
 }
 
@@ -54,10 +65,9 @@ altar_t create_altar(char *path, sfClock *cl)
     altar_t res = {0};
 
     res.sp = sp_create(path, cl);
-    res.text_box = create_text_box();
+    res.text_box = create_text_box((sfVector2f){70,55}, (sfVector2f){50,50});
     res.offering = 0;
     sfSprite_setPosition(res.sp.sp, (sfVector2f){50, 50});
-    sfText_setPosition(res.text_box.text, (sfVector2f){50, 50});
     return res;
 }
 

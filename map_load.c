@@ -51,6 +51,19 @@ sfBool map_load(map_t *map, char *path, sfVector2u tile_size)
     return sfTrue;
 }
 
+void alea(all_t *all)
+{
+    if (all->altar.offering >= 5) {
+        
+    }
+}
+
+void draw_textBox(all_t *all, text_box_t text_box)
+{
+    sfRenderWindow_drawSprite(all->win, text_box.sp.sp, NULL);
+    sfRenderWindow_drawText(all->win, text_box.text, NULL);
+}
+
 void map_draw(all_t *all)
 {
     sfRenderStates states = {0};
@@ -62,23 +75,18 @@ void map_draw(all_t *all)
         draw_sprite(all);
         sfRenderWindow_drawVertexArray(all->win, all->map.vert[DECORS], &states);
 
-
-        // // sfSprite_setPosition(all->autel.sp, (sfVector2f){225, 150});
-        // sfSprite_setPosition(all->altar.sp.sp, (sfVector2f){50, 50});
-        // if (all->current_map == 4) {
-        //     sfRenderWindow_drawSprite(all->win, all->altar.sp.sp, NULL);
-        //     if (is_colliding(&all->player.sp, &all->altar.sp)) {
-        //         sfRenderWindow_drawText(all->win, all->altar.text_box.text, NULL);
-        //         // donner les offrandes
-        //     }
-        // }
-
-
         if (all->current_map == 4) {
             sfRenderWindow_drawSprite(all->win, all->altar.sp.sp, NULL);
             if (is_colliding(&all->player.sp, &all->altar.sp)) {
+                if (all->player.offering > 0) {
+                    sfText_setString(all->altar.text_box.text, "offering");
+                    all->altar.offering += all->player.offering;
+                    all->player.orientation = 0;
+                } else {
+                    sfText_setString(all->altar.text_box.text, "find me more offering");
+                }
+                draw_textBox(all, all->altar.text_box);
                 sfRenderWindow_drawText(all->win, all->altar.text_box.text, NULL);
-                // donner les offrandes
             }
         }
     }

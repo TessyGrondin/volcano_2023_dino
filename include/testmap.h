@@ -62,7 +62,7 @@
     } target_t;
 
     typedef struct {
-        // sprite_t sp;
+        sprite_t sp;
         sfText *text;
     } text_box_t;
 
@@ -132,8 +132,6 @@
         // sfRectangleShape **life;
         sprite_t end;
         altar_t altar;
-        // sprite_t altar;
-        sfText *text;
         sound_t sounds;
         menu_t menu;
         // sfText *stats;
