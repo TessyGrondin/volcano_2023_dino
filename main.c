@@ -46,8 +46,6 @@ int main(void)
     while (sfRenderWindow_isOpen(all.win)) {
         handle_event(&all);
         choose_state(&all);
-        // display_menu(&all);
-        // game_loop(&all);
     }
     destroy_all(&all);
     return 0;

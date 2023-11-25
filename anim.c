@@ -62,15 +62,11 @@ void auto_animation(all_t *all)
     if (!all->charged) return;
     if (timing - all->move >= 2) {
         for (int i = 0; all->enemies[i].sp != NULL; i++) {
-            all->enemies[i].anim = rand() % 20;
-            all->enemies[i].anim = ((all->enemies[i].anim) > 9) ? 0 : all->enemies[i].anim;
-            all->enemies[i].anim = ((all->enemies[i].anim) == 1) ? 0 : all->enemies[i].anim;
+            all->enemies[i].anim = rand() % 4;
             all->enemies[i].frame = 3;
         }
         for (int i = 0; all->target[i].sp.sp != NULL; i++) {
-            all->target[i].sp.anim = rand() % 20;
-            all->target[i].sp.anim = ((all->target[i].sp.anim) > 9) ? 0 : all->target[i].sp.anim;
-            all->target[i].sp.anim = ((all->target[i].sp.anim) == 1) ? 0 : all->target[i].sp.anim;
+            all->target[i].sp.anim = rand() % 4;
             all->target[i].sp.frame = 3;
         }
         all->move = timing;
