@@ -59,7 +59,6 @@ void spone_monster(all_t *all)
 
 void map_borders(all_t *all)
 {
-    // (void)all;
     int down = 20 * 16 - 32;
     int right = 30 * 16 - 32;
     sfVector2f pos;

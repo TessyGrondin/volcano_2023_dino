@@ -48,7 +48,6 @@ void read_entrances(all_t *all)
     int index = 0;
     int index2 = 0;
     if (all->charged == 1) {
-        // my_printf("charged true\n");
         if (all->is_end != 1) {
             sfMusic_stop(all->sounds.loose_mus);
             sfMusic_stop(all->sounds.win_mus);

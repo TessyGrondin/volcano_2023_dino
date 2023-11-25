@@ -7,13 +7,6 @@
 
 #include "include/testmap.h"
 
-// void set_last_npc(all_t *all)
-// {
-//     sfVector2f set = {100, 250};
-//     if (all->current_map == 5 && all->player.rings == 7)
-//         sfSprite_setPosition(all->npc.self.sp, set);
-// }
-
 sfBool display_loose(all_t *all)
 {
     sfTime time = sfClock_getElapsedTime(all->clock);
@@ -58,7 +51,6 @@ sfBool display_win(all_t *all)
 
 void win(all_t *all)
 {
-    // if (all->current_map == 8 && all->npc.can_dialogue == 1) {
     if (all->current_map == 8) {
         sfMusic_stop(all->sounds.game_mus);
         main_music_manager(&all->sounds, all->sounds.win_mus);

@@ -23,7 +23,7 @@ all_t init_all(void)
     res.end = sp_create(P_END, res.clock);
 
     // res.altar = create_altar(P_TARGET3, res.clock);
-    res.altar = sp_create(P_TARGET3, res.clock);
+    res.altar = create_altar(P_TARGET3, res.clock);
     res.text = sfText_create();
     sfText_setFont(res.text, sfFont_createFromFile(P_FONT));
     sfText_setString(res.text, "hello");
@@ -92,9 +92,7 @@ void get_all_layers(all_t *all)
         all->map.tiles[all->map.nb_layer] = NULL;
         if (!map_load(&all->map, P_TILESET, (sfVector2u){16, 16}))
             return;
-        // my_printf("loaded\n");
         spone_monster(all);
-        // my_printf("complete\n");
         all->charged = 1;
     }
 }

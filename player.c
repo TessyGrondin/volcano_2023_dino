@@ -26,17 +26,6 @@ void anim_player(all_t *all)
     }
 }
 
-// void no_more_invincible(all_t *all)
-// {
-//     sfTime time = sfClock_getElapsedTime(all->clock);
-//     float timing = sfTime_asSeconds(time);
-//     if (timing - all->player.invicibility_time >= 0.5 &&
-//     all->player.invincible == 1) {
-//         all->player.invincible = 0;
-//         all->player.invicibility_time = timing;
-//     }
-// }
-
 sprite_t sp_create(char *path, sfClock *cl)
 {
     sfIntRect r = {0, 0, 32, 32};
@@ -67,24 +56,22 @@ altar_t create_altar(char *path, sfClock *cl)
     res.sp = sp_create(path, cl);
     res.text_box = create_text_box();
     res.offering = 0;
+    sfSprite_setPosition(res.sp.sp, (sfVector2f){50, 50});
+    sfText_setPosition(res.text_box.text, (sfVector2f){50, 50});
     return res;
 }
 
 void get_hit(all_t *all)
 {
     for (int i = 0; all->enemies[i].sp; i++)
-        if (is_colliding(&all->player.sp, &all->enemies[i]))// && all->player.invincible == 0) {
+        if (is_colliding(&all->player.sp, &all->enemies[i]))
             loose(all);
-            // all->player.invincible = 1;
 }
 
 void action_player(all_t *all)
 {
-    // loose(all);
     anim_player(all);
     get_hit(all);
-    // no_more_invincible(all);
-    // level_up(all);
     move(&all->player.sp);
     collisions(&all->player.sp, all);
     win(all);
@@ -94,6 +81,5 @@ player_t create_player(sfClock *clock)
 {
     player_t res = {0};
     res.sp = sp_create(P_PLAYER, clock);
-    // res.invicibility_time = sfTime_asSeconds(sfClock_getElapsedTime(clock));
     return res;
 }

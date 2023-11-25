@@ -13,7 +13,7 @@ SRC = 	getlvl.c\
 		move.c\
 		player.c\
 		read_layer.c\
-		sword.c\
+		bite.c\
 		collision.c\
 		move2.c\
 		bite_attack.c\
@@ -23,7 +23,6 @@ SRC = 	getlvl.c\
 		collisions_left.c\
 		map_collisions.c\
 		reload.c\
-		state_rings.c\
 		endgame.c\
 		music.c\
 		menu.c\

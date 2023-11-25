@@ -59,18 +59,3 @@ void use_bite(player_t *player, all_t *all)
         player->bite = 0;
     }
 }
-
-// void is_alive(all_t *all)
-// {
-//     for (int i = 0; all->ent[i].sp.sp; i++) {
-//         if (all->ent[i].hp <= 0 && all->ent[i].alive == 1) {
-//             all->ent[i].alive = 0;
-//             sfSound_play(all->sounds.hit);
-//         }
-//         if (all->ent[i].alive == 0) {
-//             give_hp(&all->player);
-//             all->player.exp += 10;
-//             all->ent[i].alive = 2;
-//         }
-//     }
-// }

@@ -42,14 +42,11 @@
         unsigned int width;
         unsigned int height;
         collision_t *collisions;
-        // collision_t *road;
     } map_t;
 
     typedef struct {
-        // char *name;
         sfSprite *sp;
         sfTexture *tex;
-        // int value;
         int frame;
         float lat;
         int anim;
@@ -77,10 +74,6 @@
 
     typedef struct {
         sprite_t sp;
-        // sprite_t ball;
-        // int invincible;
-        // float invicibility_time;
-        // sfBool use_fire;
         sfBool bite;
         int last;
         int last_move;
@@ -138,8 +131,8 @@
         target_t *target;
         // sfRectangleShape **life;
         sprite_t end;
-        // altar_t altar;
-        sprite_t altar;
+        altar_t altar;
+        // sprite_t altar;
         sfText *text;
         sound_t sounds;
         menu_t menu;

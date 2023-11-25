@@ -28,7 +28,6 @@ void play_animation(sprite_t *entit, all_t *all)
 
 void draw_sprite(all_t *all)
 {
-    // (void)all;
     for (int i = 0; all->enemies[i].sp != NULL; i++)
         sfRenderWindow_drawSprite(all->win, all->enemies[i].sp, NULL);
     sfRenderWindow_drawSprite(all->win, all->player.sp.sp, NULL);

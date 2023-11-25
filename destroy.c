@@ -7,17 +7,6 @@
 
 #include "include/testmap.h"
 
-// void destroy_npc(all_t *all)
-// {
-//     sfTexture_destroy(all->npc.self.tex);
-//     sfSprite_destroy(all->npc.self.sp);
-//     sfTexture_destroy(all->npc.dialogue.tex);
-//     sfSprite_destroy(all->npc.dialogue.sp);
-//     can_free(all->npc.self.name);
-//     can_free(all->npc.dialogue.name);
-//     all->npc.self.sp = NULL;
-// }
-
 void destroy_menu_and_sounds(all_t *all)
 {
     sfSprite_destroy(all->menu.start.look.sp);
@@ -52,33 +41,22 @@ void destroy_all(all_t *all)
     destroy_menu_and_sounds(all);
     if (!all->e_menu)
         return;
-
-    sfSprite_destroy(all->altar.sp);
-    sfTexture_destroy(all->altar.tex);
-    sfText_destroy(all->text);
-
-    // sfSprite_destroy(all->altar.sp.sp);
-    // // sfSprite_destroy(all->altar.text_box.sp);
-    // sfTexture_destroy(all->altar.sp.tex);
-    // sfText_destroy(all->altar.text_box.text);
+    sfSprite_destroy(all->altar.sp.sp);
+    // sfSprite_destroy(all->altar.text_box.sp);
+    sfTexture_destroy(all->altar.sp.tex);
+    sfText_destroy(all->altar.text_box.text);
 
     sfSprite_destroy(all->player.sp.sp);
     sfTexture_destroy(all->player.sp.tex);
     sfRenderWindow_destroy(all->win);
     sfView_destroy(all->view);
-    // for (int i = 0; all->life[i]; i++)
-    //     sfRectangleShape_destroy(all->life[i]);
-    // free(all->life);
     destroy_map(&all->map);
-    // if (all->npc.self.sp)
-    //     destroy_npc(all);
     sfSprite_destroy(all->end.sp);
     sfTexture_destroy(all->end.tex);
 }
 
 void empty_level(all_t *all)
 {
-    // (void)all;
     for (int i = 0; i != all->map.nb_layer; i++)
         sfVertexArray_destroy(all->map.vert[i]);
     for (int i = 0; all->map.tiles[i]; i++)
