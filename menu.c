@@ -41,6 +41,6 @@ void display_menu(all_t *all)
         display_button(&all->menu.start, all, (sfVector2f){350, 100});
         // sfRenderWindow_display(all->win);
     } else
-        all->states = GAME;
+        all->states = INTRO;
 }
 

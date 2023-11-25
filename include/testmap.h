@@ -74,6 +74,7 @@
         sfBool alea_lave;
         sfBool alea_cendre;
         sfBool alea_gli_ter;
+        int altar_dialog_index;
     } altar_t;
 
     typedef struct {
