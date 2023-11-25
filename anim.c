@@ -32,7 +32,7 @@ void draw_sprite(all_t *all)
         sfRenderWindow_drawSprite(all->win, all->enemies[i].sp, NULL);
     sfRenderWindow_drawSprite(all->win, all->player.sp.sp, NULL);
     for (int i = 0; all->target[i].sp.sp != NULL; i++)
-        if (all->target[i].alive == 1)
+        if (all->target[i].alive == sfTrue && all->target[i].map == all->current_map)
             sfRenderWindow_drawSprite(all->win, all->target[i].sp.sp, NULL);
 }
 
@@ -44,7 +44,7 @@ void anim_everyone(all_t *all)
         move(&all->enemies[i]);
 
     for (int i = 0; all->target[i].sp.sp != NULL; i++)
-        anim_npc(&all->target[i], all);
+        play_animation(&all->target[i].sp, all);
     for (int i = 0; all->target[i].sp.sp != NULL; i++)
         move(&all->target[i].sp);
 

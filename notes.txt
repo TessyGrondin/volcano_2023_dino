@@ -1,34 +1,23 @@
-    all_t all = init_all();
-    all.map = initmap();
-    srand(time(NULL));
-    sfRenderWindow_setFramerateLimit(all.win, 60);
-    sfSprite_setPosition(all.player.sp.sp, (sfVector2f){240, 128});
-    while (sfRenderWindow_isOpen(all.win)) {
-        handle_event(&all);
-        //display_menu(&all);
-        game_loop(&all);
-    }
-    destroy_all(&all);
-    return 0;
+5 offrandes : cendre
+10 offrandes : glissement de terrain + fontaine moyenne
+15 offrandes : fontaine grande
+20 offrandes : victoire
 
+00 -> 1
+01 -> 3
+02 -> 1
+03 -> 1
+04 -> 2
+10 -> 1
+11 -> 1
+12 -> vide
+13 -> 2
+14 -> 1
+20 -> 2
+21 -> 1
+22 -> vide
+23 -> 1
+24 -> 3
 
-    all_t all = init_all();
-    all.map = initmap();
-    srand(time(NULL));
-    sfRenderWindow_setFramerateLimit(all.win, 60);
-    sfSprite_setPosition(all.player.sp.sp, (sfVector2f){240, 128});
-    while (sfRenderWindow_isOpen(all.win)) {
-        handle_event(&all);
-        read_entrances(&all);
-        get_all_layers(&all);
-        sfRenderWindow_clear(all.win, sfBlack);
-        catch_input(&all);
-        catch_fire_one(&all);
-        is_alive(&all);
-        action_player(&all);
-        auto_animation(&all);
-        map_draw(&all);
-        sfRenderWindow_display(all.win);
-    }
-    destroy_all(&all);
-    return 0;
+int map_locations[] {
+0, 1, 1, 1, 2, 3, 4, 4, 5, 6, 8, 8, 9, 10, 10, 11, 12, 13, 13, 13, };

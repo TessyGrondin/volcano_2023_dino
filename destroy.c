@@ -53,6 +53,11 @@ void destroy_all(all_t *all)
     destroy_map(&all->map);
     sfSprite_destroy(all->end.sp);
     sfTexture_destroy(all->end.tex);
+    for (int i = 0; all->target[i].sp.sp; i++) {
+        sfSprite_destroy(all->target[i].sp.sp);
+        sfTexture_destroy(all->target[i].sp.tex);
+    }
+    free(all->target);
 }
 
 void empty_level(all_t *all)
@@ -68,10 +73,5 @@ void empty_level(all_t *all)
         sfTexture_destroy(all->enemies[i].tex);
         sfSprite_destroy(all->enemies[i].sp);
         all->enemies[i].sp = NULL;
-    }
-    for (int i = 0; all->target[i].sp.sp != NULL; i++) {
-        sfTexture_destroy(all->target[i].sp.tex);
-        sfSprite_destroy(all->target[i].sp.sp);
-        all->target[i].sp.sp = NULL;
     }
 }

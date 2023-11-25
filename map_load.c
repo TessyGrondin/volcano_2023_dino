@@ -81,7 +81,7 @@ void map_draw(all_t *all)
                 if (all->player.offering > 0) {
                     sfText_setString(all->altar.text_box.text, "offering");
                     all->altar.offering += all->player.offering;
-                    all->player.orientation = 0;
+                    all->player.offering = 0;
                 } else {
                     sfText_setString(all->altar.text_box.text, "find me more offering");
                 }

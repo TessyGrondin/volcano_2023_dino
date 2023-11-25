@@ -40,13 +40,15 @@ sfBool is_colliding(sprite_t *self, sprite_t *other)
     return sfFalse;
 }
 
-void check_hit(player_t *player, target_t *target)
+void check_hit(player_t *player, target_t *target, int map)
 {
     for (int i = 0; target[i].sp.sp != NULL; i++) {
-        bite_left(player, &target[i]);
-        bite_right(player, &target[i]);
-        bite_up(player, &target[i]);
-        bite_down(player, &target[i]);
+        if (target[i].alive && target[i].map == map) {
+            bite_left(player, &target[i]);
+            bite_right(player, &target[i]);
+            bite_up(player, &target[i]);
+            bite_down(player, &target[i]);
+        }
     }
 }
 
@@ -55,7 +57,7 @@ void use_bite(player_t *player, all_t *all)
     sfVector2f sword = sfSprite_getPosition(player->sp.sp);
     sword.x -= 10;
     if (player->bite) {
-        check_hit(player, all->target);
+        check_hit(player, all->target, all->current_map);
         player->bite = 0;
     }
 }

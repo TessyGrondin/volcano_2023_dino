@@ -19,4 +19,4 @@
     extern char const * layers_2_1[];
     extern char const * layers_2_2[];
     extern char const ** maps[];
-    extern char const * dialogue_path[];
+    extern int const map_locations[];
