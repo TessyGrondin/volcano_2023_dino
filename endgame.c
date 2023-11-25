@@ -50,7 +50,7 @@ sfBool display_win(all_t *all)
 
 void win(all_t *all)
 {
-    if (all->current_map == 8) {
+    // if (all->current_map == 8) {
         sfMusic_stop(all->sounds.game_mus);
         main_music_manager(&all->sounds, all->sounds.win_mus);
         if (!display_win(all)) {
@@ -60,5 +60,5 @@ void win(all_t *all)
             all->e_menu = 0;
             all->menu.start.state = 0;
         }
-    }
+    // }
 }

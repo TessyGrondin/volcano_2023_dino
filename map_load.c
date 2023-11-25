@@ -53,9 +53,23 @@ sfBool map_load(map_t *map, char *path, sfVector2u tile_size)
 
 void alea(all_t *all)
 {
-    if (all->altar.offering >= 5) {
-        
+    if (all->altar.alea_cendre == sfFalse && all->altar.offering >= 5) {
+        all->altar.alea_cendre = sfTrue;
+        printf("alea cendre\n");
+        // do alea de cendre
     }
+    if (all->altar.alea_gli_ter == sfFalse && all->altar.offering >= 10) {
+        all->altar.alea_gli_ter = sfTrue;
+        printf("alea glissement de terrain\n");
+        // do alea de glissement de terrain + lave
+    }
+    if (all->altar.alea_lave == sfFalse && all->altar.offering >= 15) {
+        all->altar.alea_lave = sfTrue;
+        printf("alea lave\n");
+        // do alea de lave
+    }
+    if (all->altar.offering >= 20)
+        win(all);
 }
 
 void draw_textBox(all_t *all, text_box_t text_box)
@@ -82,11 +96,17 @@ void map_draw(all_t *all)
                     sfText_setString(all->altar.text_box.text, "offering");
                     all->altar.offering += all->player.offering;
                     all->player.offering = 0;
-                } else {
+                    all->player.give_offering = sfTrue;
+                } else if (all->player.give_offering == sfFalse)
                     sfText_setString(all->altar.text_box.text, "find me more offering");
-                }
+
                 draw_textBox(all, all->altar.text_box);
-                sfRenderWindow_drawText(all->win, all->altar.text_box.text, NULL);
+
+                if (all->player.give_offering == sfTrue && all->timer > (2 * 60)) {
+                    all->player.give_offering = sfFalse;
+                    all->timer = 0;
+                }
+                all->timer++;
             }
         }
     }

@@ -80,11 +80,13 @@ void get_hit(all_t *all)
 
 void action_player(all_t *all)
 {
-    anim_player(all);
     get_hit(all);
-    move(&all->player.sp);
-    collisions(&all->player.sp, all);
-    win(all);
+    if (all->is_end != 1) {
+        anim_player(all);
+        move(&all->player.sp);
+        collisions(&all->player.sp, all);
+    }
+    // win(all);
 }
 
 player_t create_player(sfClock *clock)

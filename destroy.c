@@ -42,8 +42,9 @@ void destroy_all(all_t *all)
     if (!all->e_menu)
         return;
     sfSprite_destroy(all->altar.sp.sp);
-    // sfSprite_destroy(all->altar.text_box.sp);
     sfTexture_destroy(all->altar.sp.tex);
+    sfSprite_destroy(all->altar.text_box.sp.sp);
+    sfTexture_destroy(all->altar.text_box.sp.tex);
     sfText_destroy(all->altar.text_box.text);
 
     sfSprite_destroy(all->player.sp.sp);
