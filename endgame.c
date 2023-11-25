@@ -12,8 +12,8 @@ sfBool display_loose(all_t *all)
     sfTime time = sfClock_getElapsedTime(all->clock);
     float timing = sfTime_asSeconds(time);
     if (timing - all->move <= 10) {
-        sfSprite_setScale(all->end.sp, (sfVector2f){0.4, 0.4});
-        sfSprite_setTextureRect(all->end.sp, (sfIntRect){0, 0, 1280, 720});
+        sfSprite_setScale(all->end.sp, (sfVector2f){0.25, 0.3});
+        sfSprite_setTextureRect(all->end.sp, (sfIntRect){0, 0, 1920, 1080});
         sfRenderWindow_drawSprite(all->win, all->end.sp, NULL);
         return sfTrue;
     } else
@@ -38,10 +38,9 @@ sfBool display_win(all_t *all)
     sfTime time = sfClock_getElapsedTime(all->clock);
     float timing = sfTime_asSeconds(time);
     if (timing - all->move <= 15) {
-        sfSprite_setScale(all->end.sp, (sfVector2f){0.4, 0.4});
-        sfSprite_setTextureRect(all->end.sp, (sfIntRect){1280, 0, 1280, 720});
+        sfSprite_setScale(all->end.sp, (sfVector2f){0.25, 0.3});
+        sfSprite_setTextureRect(all->end.sp, (sfIntRect){1920, 0, 1920, 1080});
         sfRenderWindow_drawSprite(all->win, all->end.sp, NULL);
-        // play_dialogue(&all->npc, all);
         all->is_end = 1;
         return sfTrue;
     } else
