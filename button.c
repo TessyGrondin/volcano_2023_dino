@@ -7,22 +7,6 @@
 
 #include "include/testmap.h"
 
-sfBool wait_one(all_t *all)
-{
-    sfTime time = sfClock_getElapsedTime(all->clock);
-    float timing = sfTime_asSeconds(time);
-    sfIntRect r = {128, 0, 64, 24};
-    if (timing - all->move <= 2) {
-        all->menu.start.state = 2;
-        sfSprite_setTextureRect(all->menu.start.look.sp, r);
-        sfRenderWindow_drawSprite(all->win, all->menu.start.look.sp, NULL);
-        return sfTrue;
-    }
-    sfSound_play(all->sounds.button_sound);
-    all->e_menu = 1;
-    return sfFalse;
-}
-
 void button_state(button_t *button)
 {
     sfIntRect color = sfSprite_getTextureRect(button->look.sp);
@@ -35,10 +19,29 @@ void button_state(button_t *button)
     sfSprite_setTextureRect(button->look.sp, color);
 }
 
+sfBool wait_one(all_t *all)
+{
+    sfTime time = sfClock_getElapsedTime(all->clock);
+    float timing = sfTime_asSeconds(time);
+    if (timing - all->move <= 2) {
+        all->menu.start.state = 2;
+        button_state(&all->menu.start);
+        sfRenderWindow_drawSprite(all->win, all->menu.start.look.sp, NULL);
+        return sfTrue;
+    }
+    sfSound_play(all->sounds.button_sound);
+    all->e_menu = 1;
+    return sfFalse;
+}
+
 int button_click(all_t *all)
 {
     sfVector2i mouse = sfMouse_getPositionRenderWindow(all->win);
-    sfFloatRect hitbox = {1400, 320, 192, 72};
+    sfFloatRect hitbox = {0};
+    hitbox.left = 650;
+    hitbox.top = 800;
+    hitbox.width = 571;
+    hitbox.height = 227;
     if (sfMouse_isButtonPressed(sfMouseLeft) &&
     sfFloatRect_contains(&hitbox, mouse.x, mouse.y))
         all->menu.start.state = 2;
@@ -52,7 +55,11 @@ int button_click(all_t *all)
 void button_highlight(all_t *all)
 {
     sfVector2i mouse = sfMouse_getPositionRenderWindow(all->win);
-    sfFloatRect hitbox = {1400, 320, 256, 72};
+    sfFloatRect hitbox = {0};
+    hitbox.left = 650;
+    hitbox.top = 800;
+    hitbox.width = 571;
+    hitbox.height = 227;
     if (button_click(all)) {
         all->menu.start.state = 2;
         button_state(&all->menu.start);

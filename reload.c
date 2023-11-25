@@ -56,7 +56,7 @@ void reload(all_t *all)
 void make_base_material(all_t *res)
 {
     res->win = sfRenderWindow_create((sfVideoMode) {1920, 1080, 32},\
-    "The way of Fire", sfClose | sfResize, NULL);
+    "The way of Fire", sfClose, NULL);
     res->view = sfView_create();
     sfView_setCenter(res->view, (sfVector2f){(30 * 16 / 2), (20 * 16 / 2)});
     sfView_setSize(res->view, (sfVector2f){(30 * 16), (20 * 16)});
