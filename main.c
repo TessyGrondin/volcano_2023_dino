@@ -15,6 +15,27 @@ void handle_event(all_t *all)
     }
 }
 
+void choose_state(all_t *all)
+{
+    sfRenderWindow_clear(all->win, sfBlack);
+    if (all->states == MENU) {
+        display_menu(all);
+    }
+    else if (all->states == INTRO) {
+        intro(all);
+    }
+    else if (all->states == GAME) {
+        game_loop(all);
+    }
+    else if (all->states == WIN) {
+        win(all);
+    }
+    else if (all->states == LOOSE) {
+        loose(all);
+    }
+    sfRenderWindow_display(all->win);
+}
+
 int main(void)
 {
     all_t all = init_all();
@@ -24,8 +45,9 @@ int main(void)
     sfSprite_setPosition(all.player.sp.sp, (sfVector2f){240, 128});
     while (sfRenderWindow_isOpen(all.win)) {
         handle_event(&all);
-        display_menu(&all);
-        game_loop(&all);
+        choose_state(&all);
+        // display_menu(&all);
+        // game_loop(&all);
     }
     destroy_all(&all);
     return 0;

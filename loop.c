@@ -40,23 +40,59 @@ char *concat_all(char *level, char *def, char *att)
     return res;
 }
 
-void game_loop(all_t *all)
+void draw_textBox(all_t *all, text_box_t text_box)
 {
-    if (!all->e_menu)
-        return;
+    sfRenderWindow_drawSprite(all->win, text_box.sp.sp, NULL);
+    sfRenderWindow_drawText(all->win, text_box.text, NULL);
+}
+
+void intro(all_t *all)
+{
     sfMusic_stop(all->sounds.menu_mus);
     main_music_manager(&all->sounds, all->sounds.game_mus);
     read_entrances(all);
     get_all_layers(all);
-    sfRenderWindow_clear(all->win, sfBlack);
-    if (all->is_end != 1) {
-        catch_input(all);
+    action_player(all);
+    auto_animation(all);
+    map_draw(all);
+    if (all->current_map == 4) {
+        sfRenderWindow_drawSprite(all->win, all->altar.sp.sp, NULL);
+        if (is_colliding(&all->player.sp, &all->altar.sp)) {
+            if (all->player.offering > 0) {
+                sfText_setString(all->altar.text_box.text, "offering");
+                all->altar.offering += all->player.offering;
+                all->player.offering = 0;
+                all->player.give_offering = sfTrue;
+            } else if (all->player.give_offering == sfFalse)
+                sfText_setString(all->altar.text_box.text, "find me more offering");
+
+            draw_textBox(all, all->altar.text_box);
+
+            if (all->player.give_offering == sfTrue && all->timer > (2 * 60)) {
+                all->player.give_offering = sfFalse;
+                all->timer = 0;
+            }
+            all->timer++;
+        }
     }
+}
+
+void game_loop(all_t *all)
+{
+    // if (!all->e_menu)
+    //     return;
+    sfMusic_stop(all->sounds.menu_mus);
+    main_music_manager(&all->sounds, all->sounds.game_mus);
+    read_entrances(all);
+    get_all_layers(all);
+    // if (all->is_end != 1) {
+    //     catch_input(all);
+    // }
+    catch_input(all);
     action_player(all);
     auto_animation(all);
     alea(all);
     map_draw(all);
-    sfRenderWindow_display(all->win);
 }
 
 sfSound *create_sound(char *path)

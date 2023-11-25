@@ -43,7 +43,6 @@ all_t init_all(void)
     res.current_map = 4;
     res.menu = get_menu(res.clock);
     res.sounds = get_all_sounds();
-    res.timer = 0;
     return res;
 }
 

@@ -68,14 +68,8 @@ void alea(all_t *all)
         printf("alea lave\n");
         // do alea de lave
     }
-    if (all->altar.offering >= 20)
-        win(all);
-}
-
-void draw_textBox(all_t *all, text_box_t text_box)
-{
-    sfRenderWindow_drawSprite(all->win, text_box.sp.sp, NULL);
-    sfRenderWindow_drawText(all->win, text_box.text, NULL);
+    if (all->altar.offering >= 2)
+        all->states = WIN;
 }
 
 void map_draw(all_t *all)
@@ -83,32 +77,11 @@ void map_draw(all_t *all)
     sfRenderStates states = {0};
     states.blendMode = sfBlendAlpha;
     states.transform = sfTransform_Identity;
-    if (all->charged == 1 && all->is_end == 0) {
+    if (all->charged == 1) {
         states.texture = all->map.tileset;
         sfRenderWindow_drawVertexArray(all->win, all->map.vert[GROUND], &states);
         draw_sprite(all);
         sfRenderWindow_drawVertexArray(all->win, all->map.vert[DECORS], &states);
-
-        if (all->current_map == 4) {
-            sfRenderWindow_drawSprite(all->win, all->altar.sp.sp, NULL);
-            if (is_colliding(&all->player.sp, &all->altar.sp)) {
-                if (all->player.offering > 0) {
-                    sfText_setString(all->altar.text_box.text, "offering");
-                    all->altar.offering += all->player.offering;
-                    all->player.offering = 0;
-                    all->player.give_offering = sfTrue;
-                } else if (all->player.give_offering == sfFalse)
-                    sfText_setString(all->altar.text_box.text, "find me more offering");
-
-                draw_textBox(all, all->altar.text_box);
-
-                if (all->player.give_offering == sfTrue && all->timer > (2 * 60)) {
-                    all->player.give_offering = sfFalse;
-                    all->timer = 0;
-                }
-                all->timer++;
-            }
-        }
     }
 }
 

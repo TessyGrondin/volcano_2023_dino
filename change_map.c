@@ -48,10 +48,10 @@ void read_entrances(all_t *all)
     int index = 0;
     int index2 = 0;
     if (all->charged == 1) {
-        if (all->is_end != 1) {
-            sfMusic_stop(all->sounds.loose_mus);
-            sfMusic_stop(all->sounds.win_mus);
-        }
+        // if (all->is_end != 1) {
+        //     sfMusic_stop(all->sounds.loose_mus);
+        //     sfMusic_stop(all->sounds.win_mus);
+        // }
         main_music_manager(&all->sounds, all->sounds.game_mus);
         pos = sfSprite_getPosition(all->player.sp.sp);
         x = (pos.x / 16); y = (pos.y / 16);

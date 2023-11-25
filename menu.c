@@ -28,18 +28,19 @@ menu_t get_menu(sfClock *clock)
 
 void display_menu(all_t *all)
 {
-    if (all->e_menu == 1)
-        return;
+    // if (all->e_menu == 1)
+    //     return;
     if (button_click(all) == 0) {
         sfMusic_stop(all->sounds.loose_mus);
         sfMusic_stop(all->sounds.win_mus);
         sfMusic_stop(all->sounds.game_mus);
         main_music_manager(&all->sounds, all->sounds.menu_mus);
-        sfRenderWindow_clear(all->win, sfBlack);
+        // sfRenderWindow_clear(all->win, sfBlack);
         button_highlight(all);
         sfRenderWindow_drawSprite(all->win, all->menu.bg.sp, NULL);
         display_button(&all->menu.start, all, (sfVector2f){350, 100});
-        sfRenderWindow_display(all->win);
-    }
+        // sfRenderWindow_display(all->win);
+    } else
+        all->states = GAME;
 }
 

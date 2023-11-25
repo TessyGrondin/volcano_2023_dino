@@ -75,17 +75,15 @@ void get_hit(all_t *all)
 {
     for (int i = 0; all->enemies[i].sp; i++)
         if (is_colliding(&all->player.sp, &all->enemies[i]))
-            loose(all);
+            all->states = LOOSE;
 }
 
 void action_player(all_t *all)
 {
     get_hit(all);
-    if (all->is_end != 1) {
-        anim_player(all);
-        move(&all->player.sp);
-        collisions(&all->player.sp, all);
-    }
+    anim_player(all);
+    move(&all->player.sp);
+    collisions(&all->player.sp, all);
     // win(all);
 }
 
