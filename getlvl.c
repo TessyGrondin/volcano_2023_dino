@@ -29,6 +29,7 @@ all_t init_all(void)
     res.menu = get_menu(res.clock);
     res.e_menu = 0;
     res.sounds = get_all_sounds();
+    res.timer = 0;
     return res;
 }
 

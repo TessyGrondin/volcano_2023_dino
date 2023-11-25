@@ -49,9 +49,12 @@ void game_loop(all_t *all)
     read_entrances(all);
     get_all_layers(all);
     sfRenderWindow_clear(all->win, sfBlack);
-    catch_input(all);
+    if (all->is_end != 1) {
+        catch_input(all);
+    }
     action_player(all);
     auto_animation(all);
+    alea(all);
     map_draw(all);
     sfRenderWindow_display(all->win);
 }

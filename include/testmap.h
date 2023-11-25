@@ -70,6 +70,9 @@
         sprite_t sp;
         text_box_t text_box;
         int offering;
+        sfBool alea_lave;
+        sfBool alea_cendre;
+        sfBool alea_gli_ter;
     } altar_t;
 
     typedef struct {
@@ -79,6 +82,7 @@
         int last_move;
         int orientation;
         int offering;
+        sfBool give_offering;
     } player_t;
 
     enum layer {
@@ -141,6 +145,7 @@
         int current_map;
         int is_end;
         int e_menu;
+        int timer;
     } all_t;
 
     player_t create_player(sfClock *clock);
@@ -152,6 +157,7 @@
     void bite_down(player_t *player, target_t *target);
     void find_last_move(player_t *player);
     altar_t create_altar(char *path, sfClock *cl);
+    void alea(all_t *all);
 
     int *getlvl(const char *pathname);
     all_t init_all(void);
