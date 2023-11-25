@@ -12,7 +12,8 @@ button_t get_button(sfClock *clock)
     button_t res;
     res.look = sp_create(P_NEW_GAME, clock);
     res.state = 0;
-    sfSprite_setTextureRect(res.look.sp, (sfIntRect){128, 0, 64, 24});
+    sfSprite_setTextureRect(res.look.sp, (sfIntRect){0, 0, 571, 227});
+    sfSprite_setScale(res.look.sp, (sfVector2f){0.25, 0.3});
     return res;
 }
 
@@ -21,8 +22,8 @@ menu_t get_menu(sfClock *clock)
     menu_t res;
     res.bg = sp_create(P_MM_BG, clock);
     res.start = get_button(clock);
-    sfSprite_setTextureRect(res.bg.sp, (sfIntRect){0, 0, 1280, 720});
-    sfSprite_setScale(res.bg.sp, (sfVector2f){0.4, 0.4});
+    sfSprite_setTextureRect(res.bg.sp, (sfIntRect){0, 0, 1920, 1080});
+    sfSprite_setScale(res.bg.sp, (sfVector2f){0.25, 0.3});
     return res;
 }
 
@@ -38,9 +39,8 @@ void display_menu(all_t *all)
         // sfRenderWindow_clear(all->win, sfBlack);
         button_highlight(all);
         sfRenderWindow_drawSprite(all->win, all->menu.bg.sp, NULL);
-        display_button(&all->menu.start, all, (sfVector2f){350, 100});
+        display_button(&all->menu.start, all, (sfVector2f){164, 240});
         // sfRenderWindow_display(all->win);
     } else
         all->states = INTRO;
 }
-
