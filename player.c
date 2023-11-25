@@ -51,6 +51,25 @@ sprite_t sp_create(char *path, sfClock *cl)
     return res;
 }
 
+text_box_t create_text_box()
+{
+    text_box_t res = {0};
+    res.text = sfText_create();
+    sfText_setFont(res.text, sfFont_createFromFile(P_FONT));
+    sfText_setString(res.text, "hello");
+    return res;
+}
+
+altar_t create_altar(char *path, sfClock *cl)
+{
+    altar_t res = {0};
+
+    res.sp = sp_create(path, cl);
+    res.text_box = create_text_box();
+    res.offering = 0;
+    return res;
+}
+
 void get_hit(all_t *all)
 {
     for (int i = 0; all->enemies[i].sp; i++)

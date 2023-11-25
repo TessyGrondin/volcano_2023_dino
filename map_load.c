@@ -62,6 +62,28 @@ void map_draw(all_t *all)
         // sfRenderWindow_drawVertexArray(all->win, all->map.vert[ROAD], &states);
         draw_sprite(all);
         sfRenderWindow_drawVertexArray(all->win, all->map.vert[DECORS], &states);
+
+
+        // // sfSprite_setPosition(all->autel.sp, (sfVector2f){225, 150});
+        // sfSprite_setPosition(all->altar.sp.sp, (sfVector2f){50, 50});
+        // if (all->current_map == 4) {
+        //     sfRenderWindow_drawSprite(all->win, all->altar.sp.sp, NULL);
+        //     if (is_colliding(&all->player.sp, &all->altar.sp)) {
+        //         sfRenderWindow_drawText(all->win, all->altar.text_box.text, NULL);
+        //         // donner les offrandes
+        //     }
+        // }
+
+        sfSprite_setPosition(all->altar.sp, (sfVector2f){50, 50});
+        if (all->current_map == 4) {
+            sfRenderWindow_drawSprite(all->win, all->altar.sp, NULL);
+            if (is_colliding(&all->player.sp, &all->altar)) {
+                sfRenderWindow_drawText(all->win, all->text, NULL);
+                // donner les offrandes
+            }
+        }
+
+
         // if (all->npc.can_dialogue == 1)
         //     sfRenderWindow_drawSprite(all->win, all->npc.dialogue.sp, NULL);
     }

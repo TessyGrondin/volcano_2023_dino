@@ -65,6 +65,17 @@
     } target_t;
 
     typedef struct {
+        // sprite_t sp;
+        sfText *text;
+    } text_box_t;
+
+    typedef struct {
+        sprite_t sp;
+        text_box_t text_box;
+        int offering;
+    } altar_t;
+
+    typedef struct {
         sprite_t sp;
         // sprite_t ball;
         // int invincible;
@@ -127,6 +138,9 @@
         target_t *target;
         // sfRectangleShape **life;
         sprite_t end;
+        // altar_t altar;
+        sprite_t altar;
+        sfText *text;
         sound_t sounds;
         menu_t menu;
         // sfText *stats;
@@ -146,6 +160,7 @@
     void bite_up(player_t *player, target_t *target);
     void bite_down(player_t *player, target_t *target);
     void find_last_move(player_t *player);
+    altar_t create_altar(char *path, sfClock *cl);
 
     int *getlvl(const char *pathname);
     all_t init_all(void);

@@ -21,6 +21,13 @@ all_t init_all(void)
     res.charged = 0;
     res.player = create_player(res.clock);
     res.end = sp_create(P_END, res.clock);
+
+    // res.altar = create_altar(P_TARGET3, res.clock);
+    res.altar = sp_create(P_TARGET3, res.clock);
+    res.text = sfText_create();
+    sfText_setFont(res.text, sfFont_createFromFile(P_FONT));
+    sfText_setString(res.text, "hello");
+
     res.current_map = 4;
     res.is_end = 0;
     res.menu = get_menu(res.clock);

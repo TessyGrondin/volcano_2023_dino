@@ -52,6 +52,16 @@ void destroy_all(all_t *all)
     destroy_menu_and_sounds(all);
     if (!all->e_menu)
         return;
+
+    sfSprite_destroy(all->altar.sp);
+    sfTexture_destroy(all->altar.tex);
+    sfText_destroy(all->text);
+
+    // sfSprite_destroy(all->altar.sp.sp);
+    // // sfSprite_destroy(all->altar.text_box.sp);
+    // sfTexture_destroy(all->altar.sp.tex);
+    // sfText_destroy(all->altar.text_box.text);
+
     sfSprite_destroy(all->player.sp.sp);
     sfTexture_destroy(all->player.sp.tex);
     sfRenderWindow_destroy(all->win);
