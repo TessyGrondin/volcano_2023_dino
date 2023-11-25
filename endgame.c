@@ -17,13 +17,12 @@ sfBool display_loose(all_t *all)
         sfRenderWindow_drawSprite(all->win, all->end.sp, NULL);
         return sfTrue;
     } else
-        all->is_end = 0;
+        all->states = GAME;
     return sfFalse;
 }
 
 void loose(all_t *all)
 {
-    all->is_end = 1;
     sfMusic_stop(all->sounds.game_mus);
     main_music_manager(&all->sounds, all->sounds.loose_mus);
     if (!display_loose(all)) {
@@ -41,10 +40,9 @@ sfBool display_win(all_t *all)
         sfSprite_setScale(all->end.sp, (sfVector2f){0.25, 0.3});
         sfSprite_setTextureRect(all->end.sp, (sfIntRect){1920, 0, 1920, 1080});
         sfRenderWindow_drawSprite(all->win, all->end.sp, NULL);
-        all->is_end = 1;
         return sfTrue;
     } else
-        all->is_end = 0;
+        all->states = MENU;
     return sfFalse;
 }
 
@@ -57,7 +55,7 @@ void win(all_t *all)
             // init_state(&all->player);
             sfSprite_setPosition(all->player.sp.sp, (sfVector2f){240, 128});
             change_map(all, 4);
-            all->e_menu = 0;
+            all->states = MENU;
             all->menu.start.state = 0;
         }
     // }

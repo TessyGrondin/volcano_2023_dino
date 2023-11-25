@@ -30,7 +30,6 @@ sfBool wait_one(all_t *all)
         return sfTrue;
     }
     sfSound_play(all->sounds.button_sound);
-    all->e_menu = 1;
     return sfFalse;
 }
 

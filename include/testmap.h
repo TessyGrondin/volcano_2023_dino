@@ -74,6 +74,7 @@
         sfBool alea_lave;
         sfBool alea_cendre;
         sfBool alea_gli_ter;
+        int altar_dialog_index;
     } altar_t;
 
     typedef struct {
@@ -106,6 +107,14 @@
         ATT_F
     };
 
+    enum scene_state {
+        MENU,
+        INTRO,
+        GAME,
+        WIN,
+        LOOSE
+    };
+
     typedef struct {
         sfMusic *game_mus;
         sfMusic *menu_mus;
@@ -126,6 +135,7 @@
     } menu_t;
 
     typedef struct {
+        int states;
         sfRenderWindow *win;
         sfEvent event;
         map_t map;
@@ -142,8 +152,6 @@
         float move;
         int force_anim_change;
         int current_map;
-        int is_end;
-        int e_menu;
         int timer;
         int placed_target;
     } all_t;
@@ -158,6 +166,7 @@
     void find_last_move(player_t *player);
     altar_t create_altar(char *path, sfClock *cl);
     void alea(all_t *all);
+    void intro(all_t *all);
 
     int *getlvl(const char *pathname);
     all_t init_all(void);

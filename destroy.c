@@ -39,7 +39,7 @@ void destroy_map(map_t *map)
 void destroy_all(all_t *all)
 {
     destroy_menu_and_sounds(all);
-    if (!all->e_menu)
+    if (all->states != MENU)
         return;
     sfSprite_destroy(all->altar.sp.sp);
     sfTexture_destroy(all->altar.sp.tex);

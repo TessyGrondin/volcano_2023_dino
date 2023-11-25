@@ -59,7 +59,7 @@ void auto_animation(all_t *all)
 {
     sfTime time = sfClock_getElapsedTime(all->clock);
     float timing = sfTime_asSeconds(time);
-    if (!all->charged || all->is_end == 1) return;
+    if (!all->charged) return;
     if (timing - all->move >= 2) {
         for (int i = 0; all->enemies[i].sp != NULL; i++) {
             all->enemies[i].anim = rand() % 20;
