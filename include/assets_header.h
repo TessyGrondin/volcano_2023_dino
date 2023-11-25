@@ -8,7 +8,9 @@
 #ifndef ASSETS_HEADER_H_
     #define ASSETS_HEADER_H_
 
-    #define P_AUTEL "assets/game/map_tilset.png"
+    #define P_AUTEL "assets/characters/autel2.png"
+
+    #define P_PLAYER "assets/characters/player.png"
 
     #define P_TBOX "assets/game/text.png"
 
@@ -18,19 +20,11 @@
 
     #define P_NEW_GAME "assets/game/button.png"
 
-    #define P_TARGET1 "assets/characters/npc1.png"
-
-    #define P_TARGET2 "assets/characters/npc2.png"
-
-    #define P_TARGET3 "assets/characters/npc3.png"
+    #define P_TARGET1 "assets/characters/target.png"
 
     #define P_FONT "assets/game/SummerPixel22Regular.ttf"
 
-    #define P_ENEMY1 "assets/characters/enemy1.png"
-
-    #define P_ENEMY2 "assets/characters/enemy2.png"
-
-    #define P_PLAYER "assets/characters/player.png"
+    #define P_ENEMY1 "assets/characters/enemy.png"
 
     #define P_TILESET "assets/game/map_tileset.png"
 

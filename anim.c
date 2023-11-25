@@ -7,7 +7,7 @@
 
 #include "include/testmap.h"
 
-void play_animation(sprite_t *entit, all_t *all)
+void play_animation(sprite_t *entit, all_t *all, int width)
 {
     sfTime time = sfClock_getElapsedTime(all->clock);
     float timing = sfTime_asSeconds(time);
@@ -15,10 +15,10 @@ void play_animation(sprite_t *entit, all_t *all)
     anim_player(all);
     if (timing - entit->lat >= 0.15 || all->force_anim_change) {
         if (entit->frame == 3) {
-            rect.left = entit->anim * 32 * 4;
+            rect.left = entit->anim * width * 4;
             entit->frame = 0;
         } else {
-            rect.left += 32;
+            rect.left += width;
             entit->frame++;
         }
         sfSprite_setTextureRect(entit->sp, rect);
@@ -39,12 +39,12 @@ void draw_sprite(all_t *all)
 void anim_everyone(all_t *all)
 {
     for (int i = 0; all->enemies[i].sp != NULL; i++)
-        play_animation(&all->enemies[i], all);
+        play_animation(&all->enemies[i], all, CROC_WIDTH);
     for (int i = 0; all->enemies[i].sp != NULL; i++)
         move(&all->enemies[i]);
 
     for (int i = 0; all->target[i].sp.sp != NULL; i++)
-        play_animation(&all->target[i].sp, all);
+        play_animation(&all->target[i].sp, all, SP_WIDTH);
     for (int i = 0; all->target[i].sp.sp != NULL; i++) {
         move(&all->target[i].sp);
         collisions(&all->target[i].sp, all);

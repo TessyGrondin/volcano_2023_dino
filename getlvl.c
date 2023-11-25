@@ -12,7 +12,8 @@ target_t create_target(char *path, sfClock *clock)
     target_t res = {0};
 
     res.alive = sfTrue;
-    res.sp = sp_create(path, clock);
+    res.sp = sp_create(path, clock, SP_WIDTH, SP_WIDTH);
+    sfSprite_setScale(res.sp.sp, (sfVector2f){0.5, 0.5});
     return (res);
 }
 
@@ -38,8 +39,8 @@ all_t init_all(void)
     res.enemies[0].sp = NULL;
     res.move = sfTime_asSeconds(sfClock_getElapsedTime(res.clock));
     res.player = create_player(res.clock);
-    res.end = sp_create(P_END, res.clock);
-    res.altar = create_altar(P_TARGET3, res.clock);
+    res.end = sp_create(P_END, res.clock, 1920, 1080);
+    res.altar = create_altar(P_AUTEL, res.clock);
     res.current_map = 4;
     res.menu = get_menu(res.clock);
     res.sounds = get_all_sounds();

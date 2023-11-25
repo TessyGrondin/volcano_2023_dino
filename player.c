@@ -15,10 +15,10 @@ void anim_player(all_t *all)
     if (timing - all->player.sp.lat >= 0.15 ||
     all->player.last != all->player.sp.anim) {
         if (all->player.sp.frame == 3) {
-            rect.left = all->player.sp.anim * 32 * 4;
+            rect.left = all->player.sp.anim * 64 * 4;
             all->player.sp.frame = 0;
         } else {
-            rect.left += 32;
+            rect.left += 64;
             all->player.sp.frame++;
         }
         sfSprite_setTextureRect(all->player.sp.sp, rect);
@@ -26,9 +26,9 @@ void anim_player(all_t *all)
     }
 }
 
-sprite_t sp_create(char *path, sfClock *cl)
+sprite_t sp_create(char *path, sfClock *cl, int w, int h)
 {
-    sfIntRect r = {0, 0, 32, 32};
+    sfIntRect r = {0, 0, w, h};
     sprite_t res = {0};
     res.sp = sfSprite_create();
     res.tex = sfTexture_createFromFile(path, NULL);
@@ -64,7 +64,7 @@ altar_t create_altar(char *path, sfClock *cl)
 {
     altar_t res = {0};
 
-    res.sp = sp_create(path, cl);
+    res.sp = sp_create(path, cl, SP_WIDTH, SP_WIDTH);
     res.text_box = create_text_box((sfVector2f){70,55}, (sfVector2f){50,50});
     res.offering = 0;
     sfSprite_setPosition(res.sp.sp, (sfVector2f){50, 50});
@@ -84,12 +84,12 @@ void action_player(all_t *all)
     anim_player(all);
     move(&all->player.sp);
     collisions(&all->player.sp, all);
-    // win(all);
 }
 
 player_t create_player(sfClock *clock)
 {
     player_t res = {0};
-    res.sp = sp_create(P_PLAYER, clock);
+    res.sp = sp_create(P_PLAYER, clock, SP_WIDTH, SP_WIDTH);
+    res.sp.anim = IDDLE;
     return res;
 }

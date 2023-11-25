@@ -23,7 +23,7 @@ void last_input(all_t *all)
         use_bite(&all->player, all);
         return;
     }
-    all->player.sp.anim = 0;
+    all->player.sp.anim = IDDLE;
 }
 
 void other_input(all_t *all)

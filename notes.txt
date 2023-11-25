@@ -1,16 +1,2 @@
-state = intro:
-plan 1: image de volcan (pixel art) + une boite de dialogue avec un premier élément de scénario
-long timer
-plan 2: image de la mer/plage avec des débris qui tombent (pixel art) (animés ?) + deuxième élément de scénario
-long timer
-
-state = intro: dialogue avec le volcan
-
-
-state = GAME
-
-int map_locations[] {
-0, 1, 1, 1, 2, 3, 4, 4, 5, 6, 8, 8, 9, 10, 10, 11, 12, 13, 13, 13, };
-
-dimension bouton : 571 x 227
-
+le croco 128 128
+le reste 64 64

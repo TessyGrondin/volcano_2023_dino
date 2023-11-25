@@ -97,14 +97,14 @@
     };
 
     enum animation {
-        IDDLE,
-        ATT_S,
         LEFT,
         RIGHT,
-        DOWN,
         UP,
+        DOWN,
+        ATT_S,
+        ATT_F,
         ATT_B,
-        ATT_F
+        IDDLE
     };
 
     enum scene_state {
@@ -156,6 +156,9 @@
         int placed_target;
     } all_t;
 
+    #define CROC_WIDTH 128
+    #define SP_WIDTH 64
+
     player_t create_player(sfClock *clock);
     sfBool collide_bite(sfFloatRect rect, sprite_t *other);
     void use_bite(player_t *player, all_t *all);
@@ -182,7 +185,7 @@
     void anim_player(all_t *all);
     void spone_monster(all_t *all);
     void map_borders(all_t *all);
-    sprite_t sp_create(char *path, sfClock *cl);
+    sprite_t sp_create(char *path, sfClock *cl, int w, int h);
     int is_colliding(sprite_t *self, sprite_t *other);
     void get_hit(all_t *all);
     void collisions(sprite_t *ent, all_t *all);

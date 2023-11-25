@@ -24,18 +24,13 @@ void place_target(int last, sfVector2f set, all_t *all)
 void create_monster(all_t *all, sfVector2i pos)
 {
     int i = 0;
-    int color = 0;
     int index = pos.y * all->map.width + pos.x;
     sfVector2f set = {index % all->map.width * 16, index / all->map.width * 16};
     if (all->map.tiles[SPAWN][index] == -1)
         return;
     if (all->map.tiles[SPAWN][index] == 118) {
         for (; all->enemies[i].sp != NULL; i++);
-        color = rand() % 2;
-        if (color == 1)
-            all->enemies[i] = sp_create(P_ENEMY1, all->clock);
-        else
-            all->enemies[i] = sp_create(P_ENEMY2, all->clock);
+        all->enemies[i] = sp_create(P_ENEMY1, all->clock, CROC_WIDTH, CROC_WIDTH);
         all->enemies[i + 1].sp = NULL;
         sfSprite_setPosition(all->enemies[i].sp, set);
         return;
