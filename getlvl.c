@@ -7,27 +7,41 @@
 
 #include "include/testmap.h"
 
+target_t create_target(char *path, sfClock *clock)
+{
+    target_t res = {0};
+
+    res.alive = sfTrue;
+    res.sp = sp_create(path, clock);
+    return (res);
+}
+
+void create_target_arr(target_t *arr, sfClock *cl)
+{
+    if (!arr)
+        return;
+    for (int i = 0; i < 20; i++) {
+        arr[i] = create_target(P_TARGET1, cl);
+        arr[i].map = map_locations[i];
+    }
+    arr[20].sp.sp = NULL;
+}
+
 all_t init_all(void)
 {
-    all_t res;
+    all_t res = {0};
     make_base_material(&res);
     res.clock = sfClock_create();
     res.enemies = malloc(sizeof(sprite_t) * 31);
-    res.target = malloc(sizeof(target_t) * 2);
+    res.target = malloc(sizeof(target_t) * 21);
+    create_target_arr(res.target, res.clock);
     res.enemies[0].sp = NULL;
-    res.target[0].sp.sp = NULL;
     res.move = sfTime_asSeconds(sfClock_getElapsedTime(res.clock));
-    res.force_anim_change = 0;
-    res.charged = 0;
     res.player = create_player(res.clock);
     res.end = sp_create(P_END, res.clock);
-
     res.altar = create_altar(P_TARGET3, res.clock);
-
     res.current_map = 4;
-    res.is_end = 0;
     res.menu = get_menu(res.clock);
-    res.e_menu = 0;
     res.sounds = get_all_sounds();
     res.timer = 0;
     return res;
