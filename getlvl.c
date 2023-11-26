@@ -41,9 +41,44 @@ all_t init_all(void)
     res.player = create_player(res.clock);
     res.end = sp_create(P_END, res.clock, 1920, 1080);
     res.altar = create_altar(P_AUTEL, res.clock);
+    res.cine1 = sp_create(P_CINE1, res.clock, 342, 192);
+    sfSprite_setScale(res.cine1.sp, (sfVector2f){1.41, 1.65});
+    res.cine2 = sp_create(P_CINE2, res.clock, 342, 192);
+    sfSprite_setScale(res.cine2.sp, (sfVector2f){1.41, 1.65});
     res.current_map = 4;
     res.menu = get_menu(res.clock);
     res.sounds = get_all_sounds();
+
+    res.text1 = sfText_create();
+    sfText_setFont(res.text1, sfFont_createFromFile(P_FONT));
+    sfText_setString(res.text1, "");
+    sfText_setScale(res.text1, (sfVector2f){0.5, 0.5});
+    sfText_setPosition(res.text1, (sfVector2f){100, 140});
+
+    res.text2 = sfText_create();
+    sfText_setFont(res.text2, sfFont_createFromFile(P_FONT));
+    sfText_setString(res.text2, "");
+    sfText_setScale(res.text2, (sfVector2f){0.5, 0.5});
+    sfText_setPosition(res.text2, (sfVector2f){100, 160});
+
+    res.text3 = sfText_create();
+    sfText_setFont(res.text3, sfFont_createFromFile(P_FONT));
+    sfText_setString(res.text3, "");
+    sfText_setScale(res.text3, (sfVector2f){0.5, 0.5});
+    sfText_setPosition(res.text3, (sfVector2f){100, 180});
+
+    res.text3 = sfText_create();
+    sfText_setFont(res.text3, sfFont_createFromFile(P_FONT));
+    sfText_setString(res.text3, "");
+    sfText_setScale(res.text3, (sfVector2f){0.5, 0.5});
+    sfText_setPosition(res.text3, (sfVector2f){100, 200});
+
+    res.text4 = sfText_create();
+    sfText_setFont(res.text4, sfFont_createFromFile(P_FONT));
+    sfText_setString(res.text4, "");
+    sfText_setScale(res.text4, (sfVector2f){0.5, 0.5});
+    sfText_setPosition(res.text4, (sfVector2f){100, 200});
+
     return res;
 }
 

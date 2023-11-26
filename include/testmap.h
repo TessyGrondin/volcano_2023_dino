@@ -145,6 +145,8 @@
         sprite_t *enemies;
         target_t *target;
         sprite_t end;
+        sprite_t cine1;
+        sprite_t cine2;
         altar_t altar;
         sound_t sounds;
         menu_t menu;
@@ -154,6 +156,15 @@
         int current_map;
         int timer;
         int placed_target;
+
+        sfBool first_cine;
+        sfBool second_cine;
+        sfBool first_text;
+        sfBool seconde_text;
+        sfText *text1;
+        sfText *text2;
+        sfText *text3;
+        sfText *text4;
     } all_t;
 
     #define CROC_WIDTH 128

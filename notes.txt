@@ -1,2 +1,62 @@
 le croco 128 128
 le reste 64 64
+
+
+"Since the beginning of things, gods have been using various forms to provide."
+
+
+"By their side, mythical creatures. Some know them as unicorns..."
+
+
+"But more recently, people have been calling them cerathosaurus..."
+
+
+
+
+map 0 0 ground add 68 69 and 70
+
+map 0 2 ground replace -1610612681 by 68
+1610612744 by 69
+1610612791 by 70
+-1073741769 by 72
+-1073741718 by 73
+-1073741792 by 74
+-1073741791 by 75
+
+
+map 0 3 ground
+-1073741791 75
+
+map 0 4 ground
+1610612772 76
+1610612818 77
+1610612767 78
+
+map 1 0 ground
+-1610612767 78
+-1073741783 79
+
+map 1 4 ground
+1610612770 80
+
+map 2 0 decors
+-1073741792 74
+-1073741791 75
+-1073741783 79
+
+map 2 0 ground
+-1073741792 74
+
+map 2 1 collision
+-1610612699 81
+-1073741787 82
+
+map 2 1 ground
+-1610612699 81
+-1073741787 82
+
+map 2 4 ground
+-1610612701 83
+-1610612699 81
+-1610612705 84
+-1610612700 85

@@ -8,11 +8,15 @@
 #ifndef ASSETS_HEADER_H_
     #define ASSETS_HEADER_H_
 
-    #define P_AUTEL "assets/characters/autel2.png"
+    #define P_AUTEL "assets/characters/Autel2.png"
 
     #define P_PLAYER "assets/characters/player.png"
 
-    #define P_TBOX "assets/game/text.png"
+    #define P_TBOX "assets/game/dialog_box.png"
+
+    #define P_CINE1 "assets/game/cine1.png"
+
+    #define P_CINE2 "assets/game/cine2.png"
 
     #define P_END "assets/game/game_victory.png"
 

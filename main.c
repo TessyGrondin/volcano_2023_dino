@@ -18,21 +18,16 @@ void handle_event(all_t *all)
 void choose_state(all_t *all)
 {
     sfRenderWindow_clear(all->win, sfBlack);
-    if (all->states == MENU) {
+    if (all->states == MENU)
         display_menu(all);
-    }
-    else if (all->states == INTRO) {
+    else if (all->states == INTRO)
         intro(all);
-    }
-    else if (all->states == GAME) {
+    else if (all->states == GAME)
         game_loop(all);
-    }
-    else if (all->states == WIN) {
+    else if (all->states == WIN)
         win(all);
-    }
-    else if (all->states == LOOSE) {
+    else if (all->states == LOOSE)
         loose(all);
-    }
     sfRenderWindow_display(all->win);
 }
 

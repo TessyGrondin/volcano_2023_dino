@@ -54,7 +54,7 @@ text_box_t create_text_box(sfVector2f text_pos, sfVector2f box_pos)
     sfSprite_setTextureRect(res.sp.sp, r);
     sfSprite_setPosition(res.sp.sp, box_pos);
     sfText_setPosition(res.text, text_pos);
-    sfSprite_setScale(res.sp.sp, (sfVector2f){0.2, 0.2});
+    sfSprite_setScale(res.sp.sp, (sfVector2f){0.8, 0.8});
     sfText_setScale(res.text, (sfVector2f){0.5, 0.5});
 
     return res;
@@ -65,9 +65,9 @@ altar_t create_altar(char *path, sfClock *cl)
     altar_t res = {0};
 
     res.sp = sp_create(path, cl, SP_WIDTH, SP_WIDTH);
-    res.text_box = create_text_box((sfVector2f){70,55}, (sfVector2f){50,50});
+    res.text_box = create_text_box((sfVector2f){124,250}, (sfVector2f){104, 240});
     res.offering = 0;
-    sfSprite_setPosition(res.sp.sp, (sfVector2f){50, 50});
+    sfSprite_setPosition(res.sp.sp, (sfVector2f){200, 100});
     return res;
 }
 
