@@ -60,3 +60,14 @@ map 2 4 ground
 -1610612699 81
 -1610612705 84
 -1610612700 85
+
+les différentes layers :
+config/map_y_x/map_y_x_effect.csv
+
+effects = {
+    ground,
+    decors
+    collision
+    entrances --> à faire
+    spawn --> à faire
+}

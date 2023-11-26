@@ -12,11 +12,17 @@
     extern char const * layers_0_0[];
     extern char const * layers_0_1[];
     extern char const * layers_0_2[];
+    extern char const * layers_0_3[];
+    extern char const * layers_0_4[];
     extern char const * layers_1_0[];
     extern char const * layers_1_1[];
     extern char const * layers_1_2[];
+    extern char const * layers_1_3[];
+    extern char const * layers_1_4[];
     extern char const * layers_2_0[];
     extern char const * layers_2_1[];
     extern char const * layers_2_2[];
+    extern char const * layers_2_3[];
+    extern char const * layers_2_4[];
     extern char const ** maps[];
     extern int const map_locations[];

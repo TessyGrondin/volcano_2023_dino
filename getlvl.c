@@ -42,41 +42,41 @@ all_t init_all(void)
     res.end = sp_create(P_END, res.clock, 1920, 1080);
     res.altar = create_altar(P_AUTEL, res.clock);
     res.cine1 = sp_create(P_CINE1, res.clock, 342, 192);
-    sfSprite_setScale(res.cine1.sp, (sfVector2f){1.41, 1.65});
+    sfSprite_setScale(res.cine1.sp, (sfVector2f){4.7, 6.97});
     res.cine2 = sp_create(P_CINE2, res.clock, 342, 192);
-    sfSprite_setScale(res.cine2.sp, (sfVector2f){1.41, 1.65});
-    res.current_map = 4;
+    sfSprite_setScale(res.cine2.sp, (sfVector2f){4.7, 6.97});
+    res.current_map = 7;
     res.menu = get_menu(res.clock);
     res.sounds = get_all_sounds();
 
     res.text1 = sfText_create();
     sfText_setFont(res.text1, sfFont_createFromFile(P_FONT));
     sfText_setString(res.text1, "");
-    sfText_setScale(res.text1, (sfVector2f){0.5, 0.5});
+    sfText_setScale(res.text1, (sfVector2f){2.5, 2.5});
     sfText_setPosition(res.text1, (sfVector2f){100, 140});
 
     res.text2 = sfText_create();
     sfText_setFont(res.text2, sfFont_createFromFile(P_FONT));
     sfText_setString(res.text2, "");
-    sfText_setScale(res.text2, (sfVector2f){0.5, 0.5});
+    sfText_setScale(res.text2, (sfVector2f){2.5, 2.5});
     sfText_setPosition(res.text2, (sfVector2f){100, 160});
 
     res.text3 = sfText_create();
     sfText_setFont(res.text3, sfFont_createFromFile(P_FONT));
     sfText_setString(res.text3, "");
-    sfText_setScale(res.text3, (sfVector2f){0.5, 0.5});
+    sfText_setScale(res.text3, (sfVector2f){2.5, 2.5});
     sfText_setPosition(res.text3, (sfVector2f){100, 180});
 
     res.text3 = sfText_create();
     sfText_setFont(res.text3, sfFont_createFromFile(P_FONT));
     sfText_setString(res.text3, "");
-    sfText_setScale(res.text3, (sfVector2f){0.5, 0.5});
+    sfText_setScale(res.text3, (sfVector2f){2.5, 2.5});
     sfText_setPosition(res.text3, (sfVector2f){100, 200});
 
     res.text4 = sfText_create();
     sfText_setFont(res.text4, sfFont_createFromFile(P_FONT));
     sfText_setString(res.text4, "");
-    sfText_setScale(res.text4, (sfVector2f){0.5, 0.5});
+    sfText_setScale(res.text4, (sfVector2f){2.5, 2.5});
     sfText_setPosition(res.text4, (sfVector2f){100, 200});
 
     return res;
@@ -85,10 +85,10 @@ all_t init_all(void)
 map_t initmap(void)
 {
     map_t res;
-    res.height = 20;
-    res.width = 30;
-    res.vert = malloc(sizeof(sfVertexArray *) * 6);
-    res.collisions = malloc(sizeof(collision_t) * 601);
+    res.height = 40;
+    res.width = 50;
+    res.vert = malloc(sizeof(sfVertexArray *) * 5);
+    res.collisions = malloc(sizeof(collision_t) * (40 * 50 + 1));
     create_collisions(res.collisions);
     return res;
 }
@@ -114,8 +114,10 @@ int *getlvl(const char *pathname)
     int st = stat(pathname, &buf);
     int size = 0;
     int *res = NULL;
-    if (st == -1 || op == -1)
+    if (st == -1 || op == -1) {
+        printf("could not access file : %s\n", pathname);
         return NULL;
+    }
     data = malloc(sizeof(char) * (buf.st_size + 1));
     size = read(op, data, buf.st_size);
     if (size == -1)
@@ -136,7 +138,7 @@ void get_all_layers(all_t *all)
         for (int i = 0; maps[all->current_map][i]; i++)
             all->map.tiles[i] = getlvl(maps[all->current_map][i]);
         all->map.tiles[all->map.nb_layer] = NULL;
-        if (!map_load(&all->map, P_TILESET, (sfVector2u){16, 16}))
+        if (!map_load(&all->map, P_TILESET, (sfVector2u){32, 32}))
             return;
         spone_monster(all);
         all->charged = 1;

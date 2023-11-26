@@ -11,19 +11,19 @@ sfBool create_collisions(collision_t *array)
 {
     int x = 0;
     int y = 0;
-    for (int i = 0; i < 600; i++) {
+    for (int i = 0; i < (40 * 50); i++) {
         if (!(array[i].rect = sfRectangleShape_create()))
             return sfFalse;
         array[i].state = sfFalse;
-        sfRectangleShape_setSize(array[i].rect, (sfVector2f){16, 16});
+        sfRectangleShape_setSize(array[i].rect, (sfVector2f){32, 32});
         sfRectangleShape_setPosition(array[i].rect, (sfVector2f){x, y});
         sfRectangleShape_setOutlineThickness(array[i].rect, 1);
         sfRectangleShape_setOutlineColor(array[i].rect, sfWhite);
         sfRectangleShape_setFillColor(array[i].rect, sfTransparent);
-        x += 16;
-        if (x >= (30 * 16)) {
+        x += 32;
+        if (x >= (50 * 32)) {
             x = 0;
-            y += 16;
+            y += 32;
         }
     }
     return sfTrue;
@@ -32,7 +32,7 @@ sfBool create_collisions(collision_t *array)
 void fill_collision(map_t *map, int x, int y)
 {
     int index = y * map->width + x;
-    sfVector2f set = {index % map->width * 16, index / map->width * 16};
+    sfVector2f set = {index % map->width * 32, index / map->width * 32};
     if (map->tiles[COLLISION][index] == -1)
         return;
     map->collisions[index].state = sfTrue;

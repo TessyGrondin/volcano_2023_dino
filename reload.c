@@ -45,7 +45,7 @@ void reload(all_t *all)
         freer(ref);
     }
     all->map.tiles[all->map.nb_layer] = NULL;
-    if (!map_load(&all->map, P_TILESET, (sfVector2u){16, 16}))
+    if (!map_load(&all->map, P_TILESET, (sfVector2u){32, 32}))
         return;
     for (int i = 0; all->target[i].sp.sp; i++)
         all->target[i].alive = sfTrue;
@@ -56,9 +56,9 @@ void reload(all_t *all)
 void make_base_material(all_t *res)
 {
     res->win = sfRenderWindow_create((sfVideoMode) {1080, 720, 32},\
-    "The way of Fire", sfClose | sfResize, NULL);
+    "To a new era", sfClose | sfResize, NULL);
     res->view = sfView_create();
-    sfView_setCenter(res->view, (sfVector2f){(30 * 16 / 2), (20 * 16 / 2)});
-    sfView_setSize(res->view, (sfVector2f){(30 * 16), (20 * 16)});
+    sfView_setCenter(res->view, (sfVector2f){(50 * 32 / 2), (40 * 32 / 2)});
+    sfView_setSize(res->view, (sfVector2f){(50 * 32), (40 * 32)});
     sfRenderWindow_setView(res->win, res->view);
 }

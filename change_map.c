@@ -10,16 +10,16 @@
 void set_player_position(player_t *player, sfVector2f last_pos)
 {
     sfVector2f new_pos = {last_pos.x, last_pos.y};
-    int width = 16 * 30;
-    int height = 16 * 20;
-    if (last_pos.x <= 32)
-        new_pos.x = width - 35;
-    if (last_pos.x >= (width - 32))
-        new_pos.x = 35;
-    if (last_pos.y <= 32)
-        new_pos.y = height - 35;
-    if (last_pos.y >= (height - 32))
-        new_pos.y = 35;
+    int width = 32 * 50;
+    int height = 32 * 40;
+    if (last_pos.x <= 64)
+        new_pos.x = width - 64;
+    if (last_pos.x >= (width - 64))
+        new_pos.x = 64;
+    if (last_pos.y <= 64)
+        new_pos.y = height - 64;
+    if (last_pos.y >= (height - 64))
+        new_pos.y = 64;
     sfSprite_setPosition(player->sp.sp, new_pos);
 }
 
@@ -50,7 +50,7 @@ void read_entrances(all_t *all)
     if (all->charged == 1) {
         main_music_manager(&all->sounds, all->sounds.game_mus);
         pos = sfSprite_getPosition(all->player.sp.sp);
-        x = (pos.x / 16); y = (pos.y / 16);
+        x = (pos.x / 32); y = (pos.y / 32);
         index = (int)((x + 1) + y * (int)all->map.width);
         index2 = (int)(x + (y + 1) * (int)all->map.width);
         redirect(all, index, pos);

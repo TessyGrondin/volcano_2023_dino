@@ -90,9 +90,8 @@
     enum layer {
         GROUND,
         DECORS,
-        BIOM,
-        ENTRANCES,
         COLLISION,
+        ENTRANCES,
         SPAWN
     };
 

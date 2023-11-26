@@ -7,98 +7,157 @@
 
 #include "layers_header.h"
 
-char const * layers_0_0[] = {
-"config/map_0_0/map00_ground.csv",
-"config/map_0_0/map00_trees.csv",
-"config/map_0_0/map00_road.csv",
-"config/map_0_0/map00_entrance.csv",
-"config/map_0_0/map00_collision.csv",
-"config/map_0_0/map00_spawn.csv",
-NULL,
-};
-char const * layers_0_1[] = {
-"config/map_0_1/map01_ground.csv",
-"config/map_0_1/map01_trees.csv",
-"config/map_0_1/map01_road.csv",
-"config/map_0_1/map01_entrance.csv",
-"config/map_0_1/map01_collision.csv",
-"config/map_0_1/map01_spawn.csv",
-NULL,
-};
-char const * layers_0_2[] = {
-"config/map_0_2/map02_ground.csv",
-"config/map_0_2/map02_trees.csv",
-"config/map_0_2/map02_road.csv",
-"config/map_0_2/map02_entrance.csv",
-"config/map_0_2/map02_collision.csv",
-"config/map_0_2/map02_spawn.csv",
-NULL,
-};
-char const * layers_1_0[] = {
-"config/map_1_0/map10_ground.csv",
-"config/map_1_0/map10_trees.csv",
-"config/map_1_0/map10_road.csv",
-"config/map_1_0/map10_entrance.csv",
-"config/map_1_0/map10_collision.csv",
-"config/map_1_0/map10_spawn.csv",
-NULL,
-};
-char const * layers_1_1[] = {
-"config/map_1_1/map11_ground.csv",
-"config/map_1_1/map11_trees.csv",
-"config/map_1_1/map11_road.csv",
-"config/map_1_1/map11_entrance.csv",
-"config/map_1_1/map11_collision.csv",
-"config/map_1_1/map11_spawn.csv",
-NULL,
-};
-char const * layers_1_2[] = {
-"config/map_1_2/map12_ground.csv",
-"config/map_1_2/map12_trees.csv",
-"config/map_1_2/map12_road.csv",
-"config/map_1_2/map12_entrance.csv",
-"config/map_1_2/map12_collision.csv",
-"config/map_1_2/map12_spawn.csv",
-NULL,
-};
-char const * layers_2_0[] = {
-"config/map_2_0/map20_ground.csv",
-"config/map_2_0/map20_trees.csv",
-"config/map_2_0/map20_road.csv",
-"config/map_2_0/map20_entrance.csv",
-"config/map_2_0/map20_collision.csv",
-"config/map_2_0/map20_spawn.csv",
-NULL,
-};
-char const * layers_2_1[] = {
-"config/map_2_1/map21_ground.csv",
-"config/map_2_1/map21_trees.csv",
-"config/map_2_1/map21_road.csv",
-"config/map_2_1/map21_entrance.csv",
-"config/map_2_1/map21_collision.csv",
-"config/map_2_1/map21_spawn.csv",
-NULL,
-};
-char const * layers_2_2[] = {
-"config/map_2_2/map22_ground.csv",
-"config/map_2_2/map22_trees.csv",
-"config/map_2_2/map22_road.csv",
-"config/map_2_2/map22_entrance.csv",
-"config/map_2_2/map22_collision.csv",
-"config/map_2_2/map22_spawn.csv",
+char const *layers_0_0[] = {
+"config/map_0_0/map_0_0_ground.csv",
+"config/map_0_0/map_0_0_decors.csv",
+"config/map_0_0/map_0_0_collisions.csv",
+"config/map_0_0/map_0_0_entrances.csv",
+"config/map_0_0/map_0_0_spawn.csv",
 NULL,
 };
 
-char const ** maps[] = {
+char const *layers_0_1[] = {
+"config/map_0_1/map_0_1_ground.csv",
+"config/map_0_1/map_0_1_decors.csv",
+"config/map_0_1/map_0_1_collisions.csv",
+"config/map_0_1/map_0_1_entrances.csv",
+"config/map_0_1/map_0_1_spawn.csv",
+NULL,
+};
+
+char const *layers_0_2[] = {
+"config/map_0_2/map_0_2_ground.csv",
+"config/map_0_2/map_0_2_decors.csv",
+"config/map_0_2/map_0_2_collisions.csv",
+"config/map_0_2/map_0_2_entrances.csv",
+"config/map_0_2/map_0_2_spawn.csv",
+NULL,
+};
+
+char const *layers_0_3[] = {
+"config/map_0_3/map_0_3_ground.csv",
+"config/map_0_3/map_0_3_decors.csv",
+"config/map_0_3/map_0_3_collisions.csv",
+"config/map_0_3/map_0_3_entrances.csv",
+"config/map_0_3/map_0_3_spawn.csv",
+NULL,
+};
+
+char const *layers_0_4[] = {
+"config/map_0_4/map_0_4_ground.csv",
+"config/map_0_4/map_0_4_decors.csv",
+"config/map_0_4/map_0_4_collisions.csv",
+"config/map_0_4/map_0_4_entrances.csv",
+"config/map_0_4/map_0_4_spawn.csv",
+NULL,
+};
+
+char const *layers_1_0[] = {
+"config/map_1_0/map_1_0_ground.csv",
+"config/map_1_0/map_1_0_decors.csv",
+"config/map_1_0/map_1_0_collisions.csv",
+"config/map_1_0/map_1_0_entrances.csv",
+"config/map_1_0/map_1_0_spawn.csv",
+NULL,
+};
+
+char const *layers_1_1[] = {
+"config/map_1_1/map_1_1_ground.csv",
+"config/map_1_1/map_1_1_decors.csv",
+"config/map_1_1/map_1_1_collisions.csv",
+"config/map_1_1/map_1_1_entrances.csv",
+"config/map_1_1/map_1_1_spawn.csv",
+NULL,
+};
+
+char const *layers_1_2[] = {
+"config/map_1_2/map_1_2_ground.csv",
+"config/map_1_2/map_1_2_decors.csv",
+"config/map_1_2/map_1_2_collisions.csv",
+"config/map_1_2/map_1_2_entrances.csv",
+"config/map_1_2/map_1_2_spawn.csv",
+NULL,
+};
+
+char const *layers_1_3[] = {
+"config/map_1_3/map_1_3_ground.csv",
+"config/map_1_3/map_1_3_decors.csv",
+"config/map_1_3/map_1_3_collisions.csv",
+"config/map_1_3/map_1_3_entrances.csv",
+"config/map_1_3/map_1_3_spawn.csv",
+NULL,
+};
+
+char const *layers_1_4[] = {
+"config/map_1_4/map_1_4_ground.csv",
+"config/map_1_4/map_1_4_decors.csv",
+"config/map_1_4/map_1_4_collisions.csv",
+"config/map_1_4/map_1_4_entrances.csv",
+"config/map_1_4/map_1_4_spawn.csv",
+NULL,
+};
+
+char const *layers_2_0[] = {
+"config/map_2_0/map_2_0_ground.csv",
+"config/map_2_0/map_2_0_decors.csv",
+"config/map_2_0/map_2_0_collisions.csv",
+"config/map_2_0/map_2_0_entrances.csv",
+"config/map_2_0/map_2_0_spawn.csv",
+NULL,
+};
+
+char const *layers_2_1[] = {
+"config/map_2_1/map_2_1_ground.csv",
+"config/map_2_1/map_2_1_decors.csv",
+"config/map_2_1/map_2_1_collisions.csv",
+"config/map_2_1/map_2_1_entrances.csv",
+"config/map_2_1/map_2_1_spawn.csv",
+NULL,
+};
+
+char const *layers_2_2[] = {
+"config/map_2_2/map_2_2_ground.csv",
+"config/map_2_2/map_2_2_decors.csv",
+"config/map_2_2/map_2_2_collisions.csv",
+"config/map_2_2/map_2_2_entrances.csv",
+"config/map_2_2/map_2_2_spawn.csv",
+NULL,
+};
+
+char const *layers_2_3[] = {
+"config/map_2_3/map_2_3_ground.csv",
+"config/map_2_3/map_2_3_decors.csv",
+"config/map_2_3/map_2_3_collisions.csv",
+"config/map_2_3/map_2_3_entrances.csv",
+"config/map_2_3/map_2_3_spawn.csv",
+NULL,
+};
+
+char const *layers_2_4[] = {
+"config/map_2_4/map_2_4_ground.csv",
+"config/map_2_4/map_2_4_decors.csv",
+"config/map_2_4/map_2_4_collisions.csv",
+"config/map_2_4/map_2_4_entrances.csv",
+"config/map_2_4/map_2_4_spawn.csv",
+NULL,
+};
+
+char const **maps[] = {
 layers_0_0,
-layers_1_0,
-layers_2_0,
 layers_0_1,
-layers_1_1,
-layers_2_1,
 layers_0_2,
+layers_0_3,
+layers_0_4,
+layers_1_0,
+layers_1_1,
 layers_1_2,
+layers_1_3,
+layers_1_4,
+layers_2_0,
+layers_2_1,
 layers_2_2,
+layers_2_3,
+layers_2_4,
 NULL,
 };
 

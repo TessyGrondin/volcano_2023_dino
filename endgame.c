@@ -48,15 +48,12 @@ sfBool display_win(all_t *all)
 
 void win(all_t *all)
 {
-    // if (all->current_map == 8) {
-        sfMusic_stop(all->sounds.game_mus);
-        main_music_manager(&all->sounds, all->sounds.win_mus);
-        if (!display_win(all)) {
-            // init_state(&all->player);
-            sfSprite_setPosition(all->player.sp.sp, (sfVector2f){240, 128});
-            change_map(all, 4);
-            all->states = MENU;
-            all->menu.start.state = 0;
-        }
-    // }
+    sfMusic_stop(all->sounds.game_mus);
+    main_music_manager(&all->sounds, all->sounds.win_mus);
+    if (!display_win(all)) {
+        sfSprite_setPosition(all->player.sp.sp, (sfVector2f){240, 128});
+        change_map(all, 7);
+        all->states = MENU;
+        all->menu.start.state = 0;
+    }
 }

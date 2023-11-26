@@ -17,10 +17,8 @@ SRC = 	getlvl.c\
 		collision.c\
 		move2.c\
 		bite_attack.c\
-		npc.c\
 		change_map.c\
 		map.c\
-		collisions_left.c\
 		map_collisions.c\
 		reload.c\
 		endgame.c\

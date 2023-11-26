@@ -30,7 +30,7 @@
 
     #define P_ENEMY1 "assets/characters/enemy.png"
 
-    #define P_TILESET "assets/game/map_tileset.png"
+    #define P_TILESET "assets/game/tileset.png"
 
     #define P_HIT "assets/soundeffects/hit.wav"
 

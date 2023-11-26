@@ -7,50 +7,10 @@
 
 #include "include/testmap.h"
 
-char *get_str_from_nbr(int nb)
-{
-    int E = 10;
-    char *result = NULL;
-    int i = 0;
-    if (nb < 0) {
-        nb = nb * (-1);
-        result = my_append(result,'-');
-        i++;
-    }
-    while (nb / E > 9) {
-        E = E * 10;
-    }
-    for (; E >= 1 && i < 11; i++) {
-        result = my_append(result, (nb / E + 48)) ;
-        nb = nb % E;
-        E = E / 10;
-    }
-    result[i] = '\0';
-    return result;
-}
-
-char *concat_all(char *level, char *def, char *att)
-{
-    char *first = my_strdup("Level : ");
-    char *sec = my_strdup("\natt. = ");
-    char *third = my_strdup("\ndef. = ");
-    char *res = my_strcat(first, level);
-    res = my_strcat(res, my_strcat(sec, att));
-    res = my_strcat(res, my_strcat(third, def));
-    return res;
-}
-
 void draw_textBox(all_t *all, text_box_t text_box)
 {
     sfRenderWindow_drawSprite(all->win, text_box.sp.sp, NULL);
     sfRenderWindow_drawText(all->win, text_box.text, NULL);
-}
-
-void cine(all_t *all)
-{
-    // if (all->timer >= (5 * 60))
-    //     sfRenderWindow_drawSprite(all->win, all->cine1.sp, NULL);
-    all->timer++;
 }
 
 void intro(all_t *all)
@@ -136,10 +96,14 @@ void intro(all_t *all)
 
 void game_loop(all_t *all)
 {
+    printf("I arrived in game loop\n");
     sfMusic_stop(all->sounds.menu_mus);
     main_music_manager(&all->sounds, all->sounds.game_mus);
+    printf("I managed music\n");
     read_entrances(all);
+    printf("I read entrances\n");
     get_all_layers(all);
+    printf("I got layers\n");
     catch_input(all);
     action_player(all);
     auto_animation(all);

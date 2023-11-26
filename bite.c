@@ -27,14 +27,20 @@ sfBool is_colliding(sprite_t *self, sprite_t *other)
 {
     sfFloatRect hself = sfSprite_getGlobalBounds(self->sp);
     sfFloatRect hother = sfSprite_getGlobalBounds(other->sp);
-    hself.height = hself.height / 2;
-    hself.width = hself.width / 2;
-    hself.left -= 5;
-    hself.top += 5;
-    hother.height = hother.height / 2;
-    hother.width = hother.width / 2;
-    hother.left -= 5;
-    hother.top += 5;
+
+    hself.height -= hself.height / 3;
+    hself.width -= hself.width / 3;
+    hother.height -= hother.height / 3;
+    hother.width -= hother.width / 3;
+
+    // hself.height = hself.height / 2;
+    // hself.width = hself.width / 2;
+    // hself.left -= 5;
+    // hself.top += 5;
+    // hother.height = hother.height / 2;
+    // hother.width = hother.width / 2;
+    // hother.left -= 5;
+    // hother.top += 5;
     if (sfFloatRect_intersects(&hself, &hother, NULL))
         return sfTrue;
     return sfFalse;

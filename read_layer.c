@@ -25,7 +25,7 @@ void create_monster(all_t *all, sfVector2i pos)
 {
     int i = 0;
     int index = pos.y * all->map.width + pos.x;
-    sfVector2f set = {index % all->map.width * 16, index / all->map.width * 16};
+    sfVector2f set = {index % all->map.width * 32, index / all->map.width * 32};
     if (all->map.tiles[SPAWN][index] == -1)
         return;
     if (all->map.tiles[SPAWN][index] == 118) {
@@ -52,8 +52,8 @@ void spone_monster(all_t *all)
 
 void map_borders(all_t *all)
 {
-    int down = 20 * 16 - 32;
-    int right = 30 * 16 - 32;
+    int down = 40 * 32 - 64;
+    int right = 50 * 32 - 64;
     sfVector2f pos;
     for (int i = 0; all->enemies[i].sp != NULL; i++) {
         pos = sfSprite_getPosition(all->enemies[i].sp);
