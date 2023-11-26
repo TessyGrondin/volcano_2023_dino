@@ -96,21 +96,17 @@ void intro(all_t *all)
 
 void game_loop(all_t *all)
 {
-    printf("I arrived in game loop\n");
     sfMusic_stop(all->sounds.menu_mus);
     main_music_manager(&all->sounds, all->sounds.game_mus);
-    printf("I managed music\n");
     read_entrances(all);
-    printf("I read entrances\n");
     get_all_layers(all);
-    printf("I got layers\n");
     catch_input(all);
     action_player(all);
     auto_animation(all);
     alea(all);
     map_draw(all);
 
-    if (all->current_map == 4) {
+    if (all->current_map == 7) {
         if (is_colliding(&all->player.sp, &all->altar.sp)) {
             if (all->player.offering > 0) {
                 sfText_setString(all->altar.text_box.text, "offering");

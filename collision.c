@@ -42,10 +42,10 @@ void collisions(sprite_t *ent, all_t *all)
     sfFloatRect sq = {0};
     if (! all->charged) return;
     self = sfSprite_getGlobalBounds(ent->sp);
-    self.height = 29;
-    self.width = 20;
-    self.left += 8;
-    self.top += 4;
+    // self.height = 29;
+    // self.width = 20;
+    // self.left += 8;
+    // self.top += 4;
     for (unsigned int i = 0; i < (all->map.width * all->map.height); i++) {
         sq = sfRectangleShape_getGlobalBounds(all->map.collisions[i].rect);
         if (sfFloatRect_intersects(&self, &sq, NULL) &&

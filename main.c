@@ -37,7 +37,7 @@ int main(void)
     all.map = initmap();
     srand(time(NULL));
     sfRenderWindow_setFramerateLimit(all.win, 60);
-    sfSprite_setPosition(all.player.sp.sp, (sfVector2f){240, 128});
+    sfSprite_setPosition(all.player.sp.sp, (sfVector2f){700, 850});
     while (sfRenderWindow_isOpen(all.win)) {
         handle_event(&all);
         choose_state(&all);

@@ -114,10 +114,8 @@ int *getlvl(const char *pathname)
     int st = stat(pathname, &buf);
     int size = 0;
     int *res = NULL;
-    if (st == -1 || op == -1) {
-        printf("could not access file : %s\n", pathname);
+    if (st == -1 || op == -1)
         return NULL;
-    }
     data = malloc(sizeof(char) * (buf.st_size + 1));
     size = read(op, data, buf.st_size);
     if (size == -1)

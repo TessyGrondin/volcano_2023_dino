@@ -50,10 +50,10 @@ void catch_input(all_t *all)
 
 void move(sprite_t *sprite)
 {
-    sfVector2f left = {-1, 0};
-    sfVector2f right = {1, 0};
-    sfVector2f up = {0, -1};
-    sfVector2f down = {0, 1};
+    sfVector2f left = {-3, 0};
+    sfVector2f right = {3, 0};
+    sfVector2f up = {0, -3};
+    sfVector2f down = {0, 3};
     if (sprite->anim == LEFT)
         sfSprite_move(sprite->sp, left);
     if (sprite->anim == RIGHT)

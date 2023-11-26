@@ -40,7 +40,6 @@ sfBool map_load(map_t *map, char *path, sfVector2u tile_size)
 {
     if (!sfTexture_createFromFile(path, NULL))
         return sfFalse;
-    printf("the path to the tileset is ok\n");
     map->tileset = sfTexture_createFromFile(path, NULL);
     for (int i = 0; i != map->nb_layer; i++) {
         map->vert[i] = sfVertexArray_create();

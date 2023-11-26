@@ -67,7 +67,7 @@ altar_t create_altar(char *path, sfClock *cl)
     res.sp = sp_create(path, cl, SP_WIDTH, SP_WIDTH);
     res.text_box = create_text_box((sfVector2f){124,250}, (sfVector2f){104, 240});
     res.offering = 0;
-    sfSprite_setPosition(res.sp.sp, (sfVector2f){200, 100});
+    sfSprite_setPosition(res.sp.sp, (sfVector2f){800, 800});
     return res;
 }
 
