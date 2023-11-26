@@ -12,6 +12,8 @@
 
     #define P_PLAYER "assets/characters/player.png"
 
+    #define P_LOADING "assets/game/LOADING.png"
+
     #define P_TBOX "assets/game/dialog_box.png"
 
     #define P_CINE1 "assets/game/cine1.png"

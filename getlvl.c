@@ -33,6 +33,8 @@ all_t init_all(void)
     all_t res = {0};
     make_base_material(&res);
     res.clock = sfClock_create();
+    res.load = sp_create(P_LOADING, res.clock, 64, 64);
+    sfSprite_setPosition(res.load.sp, (sfVector2f){1300, 1150});
     res.enemies = malloc(sizeof(sprite_t) * 31);
     res.target = malloc(sizeof(target_t) * 21);
     create_target_arr(res.target, res.clock);

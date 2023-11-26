@@ -146,6 +146,7 @@
         sprite_t end;
         sprite_t cine1;
         sprite_t cine2;
+        sprite_t load;
         altar_t altar;
         sound_t sounds;
         menu_t menu;
@@ -164,10 +165,13 @@
         sfText *text2;
         sfText *text3;
         sfText *text4;
+        sfBool can_play;
     } all_t;
 
     #define CROC_WIDTH 128
     #define SP_WIDTH 64
+
+    // extern sfThread *map_load;
 
     player_t create_player(sfClock *clock);
     sfBool collide_bite(sfFloatRect rect, sprite_t *other);
@@ -180,7 +184,7 @@
     altar_t create_altar(char *path, sfClock *cl);
     void alea(all_t *all);
     void intro(all_t *all);
-
+    void play_animation(sprite_t *entit, all_t *all, int width);
     int *getlvl(const char *pathname);
     all_t init_all(void);
     sfBool map_load(map_t *map, char *path, sfVector2u tile_size);
@@ -200,7 +204,6 @@
     void get_hit(all_t *all);
     void collisions(sprite_t *ent, all_t *all);
     int is_move(int anim, int self);
-    void anim_npc(target_t  *target, all_t *all);
     void empty_level(all_t *all);
     void read_entrances(all_t *all);
     void change_map(all_t *all, int new_map);
@@ -219,5 +222,5 @@
     void display_button(button_t *button, all_t *all, sfVector2f pos);
     menu_t get_menu(sfClock *clock);
     void display_menu(all_t *all);
-    void game_loop(all_t *all);
+    void game_loop(all_t *all, sfThread *map_load);
     sfSound *create_sound(char *path);

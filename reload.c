@@ -38,6 +38,7 @@ void convert_to_int(char **src, all_t *all, int layer)
 
 void reload(all_t *all)
 {
+    all->can_play = sfFalse;
     char **ref = NULL;
     for (int i = 0; maps[all->current_map][i]; i++) {
         ref = getlvl_load(maps[all->current_map][i]);

@@ -47,6 +47,9 @@ void destroy_all(all_t *all)
     sfTexture_destroy(all->altar.text_box.sp.tex);
     sfText_destroy(all->altar.text_box.text);
 
+    sfSprite_destroy(all->load.sp);
+    sfTexture_destroy(all->load.tex);
+
     sfSprite_destroy(all->player.sp.sp);
     sfTexture_destroy(all->player.sp.tex);
     sfRenderWindow_destroy(all->win);

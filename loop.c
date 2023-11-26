@@ -94,35 +94,70 @@ void intro(all_t *all)
     all->timer++;
 }
 
-void game_loop(all_t *all)
+void play_animation_load(sprite_t *entit, all_t *all, int width)
 {
-    sfMusic_stop(all->sounds.menu_mus);
-    main_music_manager(&all->sounds, all->sounds.game_mus);
-    read_entrances(all);
-    get_all_layers(all);
-    catch_input(all);
-    action_player(all);
-    auto_animation(all);
-    alea(all);
-    map_draw(all);
+    sfTime time = sfClock_getElapsedTime(all->clock);
+    float timing = sfTime_asSeconds(time);
+    sfIntRect rect = sfSprite_getTextureRect(entit->sp);
+    anim_player(all);
+    if (timing - entit->lat >= 0.15 || all->force_anim_change) {
+        if (entit->frame == 7) {
+            rect.left = entit->anim * width * 4;
+            entit->frame = 0;
+        } else {
+            rect.left += width;
+            entit->frame++;
+        }
+        sfSprite_setTextureRect(entit->sp, rect);
+        entit->lat = timing;
+    }
+}
 
-    if (all->current_map == 7) {
-        if (is_colliding(&all->player.sp, &all->altar.sp)) {
-            if (all->player.offering > 0) {
-                sfText_setString(all->altar.text_box.text, "offering");
-                all->altar.offering += all->player.offering;
-                all->player.offering = 0;
-                all->player.give_offering = sfTrue;
-            } else if (all->player.give_offering == sfFalse)
-                sfText_setString(all->altar.text_box.text, "find me more offering");
+void display_loading(all_t *all)
+{
+    play_animation_load(&all->load, all, 64);
+    sfSprite_setScale(all->load.sp, (sfVector2f){2, 2});
+    sfText_setString(all->text3, "Loading...");
+    sfText_setPosition(all->text3, (sfVector2f){1000, 1200});
+    sfRenderWindow_drawSprite(all->win, all->cine1.sp, sfFalse);
+    sfRenderWindow_drawSprite(all->win, all->load.sp, sfFalse);
+    sfRenderWindow_drawText(all->win, all->text3, sfFalse);
+}
 
-            draw_textBox(all, all->altar.text_box);
+void game_loop(all_t *all, sfThread *map_load)
+{
+    if (!all->can_play) {
+        display_loading(all);
+        sfThread_launch(map_load);
+    }
+    else {
+        sfMusic_stop(all->sounds.menu_mus);
+        main_music_manager(&all->sounds, all->sounds.game_mus);
+        read_entrances(all);
+        catch_input(all);
+        action_player(all);
+        auto_animation(all);
+        alea(all);
+        map_draw(all);
 
-            if (all->player.give_offering == sfTrue && all->timer > (2 * 60)) {
-                all->player.give_offering = sfFalse;
-                all->timer = 0;
+        if (all->current_map == 7) {
+            if (is_colliding(&all->player.sp, &all->altar.sp)) {
+                if (all->player.offering > 0) {
+                    sfText_setString(all->altar.text_box.text, "offering");
+                    all->altar.offering += all->player.offering;
+                    all->player.offering = 0;
+                    all->player.give_offering = sfTrue;
+                } else if (all->player.give_offering == sfFalse)
+                    sfText_setString(all->altar.text_box.text, "find me more offering");
+
+                draw_textBox(all, all->altar.text_box);
+
+                if (all->player.give_offering == sfTrue && all->timer > (2 * 60)) {
+                    all->player.give_offering = sfFalse;
+                    all->timer = 0;
+                }
+                all->timer++;
             }
-            all->timer++;
         }
     }
 }
